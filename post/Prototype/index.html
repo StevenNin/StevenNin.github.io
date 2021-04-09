@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="全局对象windows的属性 共有的属性（ECMA规定）   parseInt、parseFloat、number、string、object、window.setTimeout（window自带的api）   私有的属性（浏览器的自定义）   alert、prompt、confirm、console.log（）、document/Dom()w3c、history(浏览器)Bom  简单类型和对象">
@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="不久之前 我们也都是少年">
 <meta property="og:description" content="全局对象windows的属性 共有的属性（ECMA规定）   parseInt、parseFloat、number、string、object、window.setTimeout（window自带的api）   私有的属性（浏览器的自定义）   alert、prompt、confirm、console.log（）、document/Dom()w3c、history(浏览器)Bom  简单类型和对象">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2021-04-09T08:53:53.189Z">
+<meta property="og:updated_time" content="2021-04-09T16:01:17.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Prototype">
 <meta name="twitter:description" content="全局对象windows的属性 共有的属性（ECMA规定）   parseInt、parseFloat、number、string、object、window.setTimeout（window自带的api）   私有的属性（浏览器的自定义）   alert、prompt、confirm、console.log（）、document/Dom()w3c、history(浏览器)Bom  简单类型和对象">
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 16:53:53" itemprop="dateModified" datetime="2021-04-09T16:53:53+08:00">2021-04-09</time>
+                <time title="Modified: 2021-04-10 00:01:17" itemprop="dateModified" datetime="2021-04-10T00:01:17+08:00">2021-04-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,7 +226,9 @@
 <ul>
 <li>alert、prompt、confirm、console.log（）、document/Dom()w3c、history(浏览器)Bom</li>
 </ul>
-<h5 id="简单类型和对象的区别"><a href="#简单类型和对象的区别" class="headerlink" title="简单类型和对象的区别"></a>简单类型和对象的区别</h5><p>Number</p>
+<h5 id="简单类型和对象的区别"><a href="#简单类型和对象的区别" class="headerlink" title="简单类型和对象的区别"></a>简单类型和对象的区别</h5> <a id="more"></a>
+
+<p>Number</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">1</span> </span><br><span class="line">n.toString()</span><br><span class="line"></span><br><span class="line">charAt() charCodeat() 取对象第几位数据</span><br><span class="line"></span><br><span class="line">.trim()去掉字符串的前后的空格 </span><br><span class="line">.concat()连接两个字符串</span><br><span class="line">.slice() 切取</span><br><span class="line"><span class="keyword">var</span> s = <span class="string">'hello'</span>  	s.slice(<span class="number">0</span>,<span class="number">3</span>)  </span><br><span class="line">&gt;&gt;&gt;&gt;&gt;.  <span class="string">'hel'</span></span><br><span class="line">.replace(<span class="string">''</span>,<span class="string">''</span>) 替换数据</span><br><span class="line">.split  正则</span><br></pre></td></tr></table></figure>
 
 <p>数据类型中的强记。    Again </p>
@@ -387,7 +389,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Steven Zou</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
   </div>
 
         
@@ -408,7 +410,7 @@
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
 <script src="/js/utils.js"></script><script src="/js/motion.js"></script>
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 <script src="/js/next-boot.js"></script>
 
 
