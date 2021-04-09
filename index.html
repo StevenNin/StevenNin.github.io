@@ -145,6 +145,787 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Ajax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Ajax/" class="post-title-link" itemprop="url">Ajax</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-09 16:52:57 / Modified: 16:54:32" itemprop="dateCreated datePublished" datetime="2021-04-09T16:52:57+08:00">2021-04-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Asynchronous-JavaScript-and-XML"><a href="#Asynchronous-JavaScript-and-XML" class="headerlink" title="Asynchronous JavaScript and XML"></a>Asynchronous JavaScript and XML</h3><ol>
+<li>使用XMLHtppRquest发请求</li>
+<li>服务器返回XML格式的字符串</li>
+<li>JS解析XML，并更新局部画面</li>
+</ol>
+<h4 id="请求有哪些"><a href="#请求有哪些" class="headerlink" title="请求有哪些"></a>请求有哪些</h4><ul>
+<li>form</li>
+<li>a</li>
+<li>img</li>
+<li>link</li>
+<li>script </li>
+<li>等等 </li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> img = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>)</span><br><span class="line">img.src = <span class="string">'yyy'</span></span><br><span class="line">img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'s'</span>)</span><br><span class="line">&#125;</span><br><span class="line">img.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'f'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="readystate"><a href="#readystate" class="headerlink" title="readystate"></a>readystate</h4><p>0  open（）方法还未被调用</p>
+<p>1  send（）方法还未被调用</p>
+<p>2  send（）已经被调用，响应头和响应状态已经返回，</p>
+<p>3  正在下载响应体</p>
+<p>4 请求已经把响应下载完毕   </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">mybutton.addEventLsitener(<span class="string">'click'</span>,(e)=&gt;&#123;</span><br><span class="line">    <span class="keyword">let</span> request = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">    request.onreadystatechange  = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">let</span> state = request.state</span><br><span class="line">        <span class="keyword">if</span>(request.readyState === <span class="number">4</span>)&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'请求响应都已经结束'</span>)</span><br><span class="line">            <span class="keyword">if</span>(state &gt;= <span class="number">200</span> &amp;&amp; state&lt;<span class="number">300</span>)&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'请求成功'</span>)</span><br><span class="line">                <span class="built_in">console</span>.log(request.responseText)</span><br><span class="line">              	<span class="comment">//把符合JSON 语法的字符串转换为JS 对应的值</span></span><br><span class="line">              	<span class="keyword">let</span> string = request.responseText</span><br><span class="line">              	<span class="keyword">let</span> object = <span class="built_in">window</span>.JSON.parse(string)</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state &gt;= <span class="number">400</span>)&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(<span class="string">'请求失败'</span>)</span><br><span class="line">            &#125;</span><br><span class="line">        </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    request.open(<span class="string">'GET'</span>,<span class="string">'/index'</span>)</span><br><span class="line">    request.send()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Json-and-Js-区别"><a href="#Json-and-Js-区别" class="headerlink" title="Json and Js. 区别"></a>Json and Js. 区别</h4><p>Json是一种数据格式化的语言</p>
+<ol>
+<li>Json没有抄袭js 的function 和undefine</li>
+<li>JSON的字符串首尾必须是双引号 “”</li>
+<li>不能表示复杂的对象，只能表示Hash</li>
+<li>没有原型链</li>
+</ol>
+<p>​    返回的字符串，字符串的格式刚好符合  JSON 的规范</p>
+<h4 id="同源策略"><a href="#同源策略" class="headerlink" title="同源策略"></a>同源策略</h4><p>当向baidu。com发送AJax请求时。如果不是一样的域名，就会被拒绝，</p>
+<p>可得 ： 只有 协议+端口+域名 一摸一样才允许法AJAX请求</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:	<span class="comment">//baidu.com 可以向http://www.baidu.com 发AJAX 吗。  no !!!!</span></span><br></pre></td></tr></table></figure>
+
+<p>浏览器 的网络都必须支持同源策略，以此来保证服务器和客户端的私密信息的安全</p>
+<p>​    </p>
+<h5 id="如何能获取本地域名不一样的方式获取呢"><a href="#如何能获取本地域名不一样的方式获取呢" class="headerlink" title="如何能获取本地域名不一样的方式获取呢"></a>如何能获取本地域名不一样的方式获取呢</h5><ol>
+<li><p>Jsonp </p>
+</li>
+<li><p>CORS (Cross-Origin-Reasource-Sharing)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">//在后台同意某个网址的访问：</span><br><span class="line">response.setHeader(&apos;Access-Control-Allow-Origin&apos;,&apos;http://steven.github.io&apos;)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+</li>
+</ol>
+<p>谁在 一些简单的ajax 的默认值，然后进行，才进行判断的定制设定，</p>
+<p>HTTP的协议规定，congtengtype 的设置要根据实际青款来判断</p>
+<p>JS可以设置任意请求header 吗</p>
+<p>第一部分： request.open(‘get’,’/xxx’)</p>
+<p>第二部分：request.setHeader(‘contentType’,’x-www-form-urlencoded’)</p>
+<p>第四部分：request.send(‘a=1&amp;b=2’)</p>
+<p>JS可以设置任意响应header 吗</p>
+<p>第一部分： request.status / request.statusText</p>
+<p>第二部分： request.getResponseHeader(),request.getAllResponseHeaders()</p>
+<p>第四部分：request.getResponseText</p>
+<h3 id="封装一个自己的Ajax-运用jq的方法来封装"><a href="#封装一个自己的Ajax-运用jq的方法来封装" class="headerlink" title="封装一个自己的Ajax 运用jq的方法来封装"></a>封装一个自己的Ajax 运用jq的方法来封装</h3><p>从封装理解callback 的理论，就是让函数自己不调用，让其他函数调用回来的就是实现了callback</p>
+<p>。使用callback ，就是反向的call，记下来。callback本质是一个函数</p>
+<h3 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a>Promise</h3><p>确定函数形式的一种规范</p>
+<p>.then()对同一个状态的多次处理，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="keyword">function</span>(<span class="params">resolve,reject</span>)</span>&#123;</span><br><span class="line">	<span class="comment">//成功的话，就调用resolve</span></span><br><span class="line">	<span class="comment">//失败的话，就调用reject</span></span><br><span class="line">&#125;)</span><br><span class="line">promise.then(</span><br><span class="line">	(text)=&gt;&#123;<span class="built_in">console</span>.log(text)&#125;</span><br><span class="line">  (request)=&gt;&#123;<span class="built_in">console</span>.log(request)&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/DomEvents/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/DomEvents/" class="post-title-link" itemprop="url">DomEvents</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-05 12:38:30" itemprop="dateCreated datePublished" datetime="2020-01-05T12:38:30+08:00">2020-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 16:53:41" itemprop="dateModified" datetime="2021-04-09T16:53:41+08:00">2021-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Dom-Events"><a href="#Dom-Events" class="headerlink" title="Dom Events"></a>Dom Events</h2><h3 id="Dom-level-0"><a href="#Dom-level-0" class="headerlink" title="Dom level 0"></a>Dom level 0</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">onclick</span><br><span class="line">onerror</span><br><span class="line">onload</span><br><span class="line">onmouseenter</span><br></pre></td></tr></table></figure>
+
+<h4 id="简单测试"><a href="#简单测试" class="headerlink" title="简单测试"></a>简单测试</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">html:</span><br><span class="line">onclick = <span class="string">'print'</span></span><br><span class="line">onclick = <span class="string">'print()'</span>    √</span><br><span class="line">onclick = <span class="string">'print().call()'</span>    √</span><br><span class="line"></span><br><span class="line">js:</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">'hi'</span></span><br><span class="line">)&#125;</span><br><span class="line"></span><br><span class="line">x.onclick = print   √.   <span class="comment">//类型为函数对象</span></span><br><span class="line">x.onclick = print()    <span class="comment">//返回的是undefined</span></span><br><span class="line">x.onclick = print.call()   <span class="comment">//返回的是undefined</span></span><br><span class="line"></span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">1</span>)&#125;)</span><br><span class="line"><span class="comment">//eventListener  监听事件可以给click事件添加一格队列，可以添加多个动作</span></span><br><span class="line">当然了有 add 就有remove   可以在事件完成后 remove走那个方法，就能实现一次性的监听事件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">x.onclick =<span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">1</span>)&#125; </span><br><span class="line"><span class="comment">//属性是唯一的，不能多次声明并且添加不同的动作效果</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="事件模型"><a href="#事件模型" class="headerlink" title="事件模型"></a>事件模型</h4><p>捕获阶段。冒泡阶段</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(爷爷)&#125;,<span class="literal">true</span>)</span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(父亲)&#125;,<span class="literal">true</span>)</span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(儿子)&#125;,<span class="literal">true</span>)  </span><br><span class="line"><span class="comment">// 捕获   事件顺序。   爷爷 父亲 儿子</span></span><br><span class="line"></span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(爷爷)&#125;,<span class="literal">false</span>)</span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(父亲)&#125;,<span class="literal">false</span>)</span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(儿子)&#125;,<span class="literal">false</span>)  </span><br><span class="line"><span class="comment">// 冒泡   事件顺序。   儿子 父亲 爷爷</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//如果一个节点同时有冒泡和捕获，那么执行顺序就按照代码先后顺序执行，</span></span><br><span class="line"></span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(儿子冒泡)&#125;,<span class="literal">false</span>) </span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(儿子捕获)&#125;,<span class="literal">true</span>)</span><br><span class="line"><span class="comment">//输出。 儿子冒泡 儿子捕获</span></span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(儿子捕获)&#125;,<span class="literal">true</span>) </span><br><span class="line">x.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(儿子冒泡)&#125;,<span class="literal">false</span>)</span><br><span class="line"><span class="comment">//输出。 儿子捕获 儿子冒泡</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">e.stopPropagation()阻止捕获和冒泡阶段中当前事件的进一步传播。阻止出发后，默认事件的发生</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">clickMe.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    popover.style.display = <span class="string">'block'</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">// 给外层的div添加阻止冒泡或者捕获事件的敬意传播</span></span><br><span class="line"></span><br><span class="line">wrapper.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">	e.stopPropagation()</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    popover.style.display = <span class="string">'none'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>坑1. 同时监听click 和document就会同时执行，阻止冒泡函数可以避免这种情况</p>
+<p>坑2. 在冒泡的过程中添加事件处理函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.outerHTML   Dom属性，的获取描述元素的（包括期后代）的序列化HTML片段</span><br></pre></td></tr></table></figure>
+
+<p>轮播事件的切换，需要一次次又一次次的磨砺才行</p>
+<p>代码的重构， 是技术和经验的体现</p>
+<p>附录：</p>
+<p>查看更多关于代码版权的信息</p>
+<p>阮一峰。license</p>
+<p>MIT BSD。开源</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Dom/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Dom/" class="post-title-link" itemprop="url">Dom</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-05 10:32:08" itemprop="dateCreated datePublished" datetime="2020-01-05T10:32:08+08:00">2020-01-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 16:53:46" itemprop="dateModified" datetime="2021-04-09T16:53:46+08:00">2021-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Document-Text-Element"><a href="#Document-Text-Element" class="headerlink" title="Document Text Element"></a>Document Text Element</h3><p>Dom(document  object. Model)把文档当成对象的一宗mopping</p>
+<p>从html入手了解整个页面生成的初步</p>
+<p>根据Node（节点）来看html结构</p>
+<p>Element（元素 标签）</p>
+<p>页面中的节点通过构造函数（返回  return obj      对象的函数）构造成对象，就可以调用这个对象的api 就是Domapi</p>
+<ul>
+<li>child / children / parent </li>
+<li>node</li>
+<li>first / last</li>
+<li>next / previous</li>
+<li>sibling / siblings</li>
+<li>type</li>
+<li>value / text / content</li>
+<li>inner / outer</li>
+<li>element</li>
+</ul>
+<p>childNodes  不仅标签会被记录还有回车也会被记录</p>
+<p>isEqual。判断是否为同类型的节点，</p>
+<p>isSame 判断是否为，同一节点。。。等价于。   === </p>
+<p>normalize（）  正常化。标准化</p>
+<ol>
+<li>nextSibling  可能获取到问本，，因为回车符号会被视为节点</li>
+<li>innerText。  textContent  区别。 </li>
+<li>nodetype   1表示元素。3表示文本</li>
+<li>cloneNode 接受true false   然后进行深拷贝或者浅拷贝</li>
+<li>isEqual  类似节点。   isSame  完全相等节点（同一节点）</li>
+<li>normalize（）  标准化</li>
+</ol>
+<h4 id="Document-接口"><a href="#Document-接口" class="headerlink" title="Document 接口"></a>Document 接口</h4><p> 给节点中添加文本</p>
+<p>.innerText</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">两种文本插入方式</span><br><span class="line">div.innerText = &apos;2&apos; //容易产生bug</span><br><span class="line"></span><br><span class="line">div.appendChild(document.createTextNode(&apos;HI&apos;)) //</span><br></pre></td></tr></table></figure>
+
+<p>属性</p>
+<ul>
+<li>anchors</li>
+<li>body</li>
+<li>characterSet</li>
+<li>childElementCount</li>
+<li>children</li>
+<li>doctype</li>
+<li>documentElement</li>
+<li>domain  获取域名</li>
+<li>fullscreen</li>
+<li>head</li>
+<li>hidden</li>
+<li>images</li>
+<li>links</li>
+<li>location</li>
+<li>onxxxxxxxxx</li>
+<li>origin</li>
+<li>plugins</li>
+<li>readyState</li>
+<li>referer  一种引荐判断，跳转到一个新网站是，会根据当前</li>
+<li>scripts</li>
+<li>scrollingElement</li>
+<li>styleSheets</li>
+<li>title</li>
+<li>visibilityState</li>
+</ul>
+<p>方法：</p>
+<ul>
+<li><p>close()</p>
+</li>
+<li><p>createDocumentFragment()</p>
+</li>
+<li><p>createElement()</p>
+</li>
+<li><p>createTextNode()</p>
+</li>
+<li><p>execCommand()</p>
+</li>
+<li><p>exitFullscreen()</p>
+</li>
+<li><p>getElementById()</p>
+</li>
+<li><p>getElementsByClassName()</p>
+</li>
+<li><p>getElementsByName()</p>
+</li>
+<li><p>getElementsByTagName()</p>
+</li>
+<li><p>getSelection()</p>
+</li>
+<li><p>hasFocus()</p>
+</li>
+<li><p>open()</p>
+</li>
+<li><p>querySelector()。返回一个元素</p>
+</li>
+<li><p>querySelectorAll()。返回多个元素组成的伪数组，即是一个元素 ，也返回数组</p>
+</li>
+<li><p>registerElement()</p>
+</li>
+<li><p>write()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">write有三个动作   document 刷新延时 和异步/型的调用不能这个write。少用</span><br><span class="line">open  &gt; write  &gt; close   //第二次调用write的时候，会重新循环这个动作，回覆盖之前写的东西，</span><br><span class="line">document.write(1)</span><br><span class="line">document.write(2)</span><br><span class="line">setTimeout(()=&gt;&#123;</span><br><span class="line">  document.write(3)</span><br><span class="line">&#125;,3000)</span><br><span class="line">12.  &gt;&gt;. 然后12 会被清除，&gt;&gt; 重新渲染上3</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<ul>
+<li>writeln()</li>
+</ul>
+<p>推论</p>
+<ol>
+<li><p>最好不呀用全局变量，因为它不好用</p>
+</li>
+<li><p>最好用局部变量</p>
+</li>
+<li><p>function(){} .call() 声明一个函数然后直接call，就可以用局部变量了</p>
+</li>
+<li><p>第三个推论会被认为是语法错误</p>
+</li>
+<li><p>立即调用 函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1. (function()&#123;&#125; .call()) </span><br><span class="line"> 声明一个全局的parent 会把 window.parent 覆盖</span><br><span class="line">2. (function()&#123;&#125;) .call()</span><br><span class="line">3. -function()&#123;&#125; .call()</span><br><span class="line">4. +function()&#123;&#125; .call()</span><br><span class="line">升级后的套路</span><br><span class="line">&#123;用let 声明&#125; 直接可以点用局部变量</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Hash结构-数组及其Api/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Hash结构-数组及其Api/" class="post-title-link" itemprop="url">Hash结构-数组及其Api</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-04 09:22:48" itemprop="dateCreated datePublished" datetime="2020-01-04T09:22:48+08:00">2020-01-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 16:53:50" itemprop="dateModified" datetime="2021-04-09T16:53:50+08:00">2021-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="哈希表存储模式之一的数据类型-——–数组以及其Api"><a href="#哈希表存储模式之一的数据类型-——–数组以及其Api" class="headerlink" title="哈希表存储模式之一的数据类型 - ——–数组以及其Api"></a>哈希表存储模式之一的数据类型 - ——–数组以及其Api</h3><ul>
+<li><p>window标准库 </p>
+<ul>
+<li>object（keys），string、array、number 、function、boolean</li>
+</ul>
+<p>string 的简单介绍</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="string">'1'</span>)  &gt;&gt;&gt; <span class="string">"1"</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'1'</span>)  &gt;&gt;&gt; <span class="built_in">String</span>(<span class="string">'1'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>声明数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = []</span><br><span class="line"><span class="comment">//等价于 </span></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> <span class="built_in">Array</span>[]</span><br></pre></td></tr></table></figure>
+
+<h5 id="基本类型数据的实例化过程区别-string-bumber-boolean"><a href="#基本类型数据的实例化过程区别-string-bumber-boolean" class="headerlink" title="基本类型数据的实例化过程区别(string bumber boolean )"></a>基本类型数据的实例化过程区别(string bumber boolean )</h5><ol>
+<li><p>➕new。 返回对像</p>
+</li>
+<li><p>不➕ new。返回对应的基本数据类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>(<span class="string">'1'</span>)  &gt;&gt;&gt; <span class="string">"1"</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">String</span>(<span class="string">'1'</span>)  &gt;&gt;&gt; <span class="built_in">String</span>(<span class="string">'1'</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="对象实例化的还是返回对象"><a href="#对象实例化的还是返回对象" class="headerlink" title="对象实例化的还是返回对象"></a>对象实例化的还是返回对象</h5></li>
+<li><p>特殊的Function</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a  = fuction(a,b)&#123;</span><br><span class="line">  <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line"><span class="keyword">let</span> a  = fuction&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'return a+b'</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>介绍function 的一些简单的声明</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">包含具名式和匿名式 以及<span class="keyword">new</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Function</span>()&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ul>
+<li>非标准库<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="伪数组"><a href="#伪数组" class="headerlink" title="伪数组"></a>伪数组</h3><p>有下标可以遍历的对象原型链中没有Array.prototype, 就是伪数组</p>
+<p>a.forEach</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a.forEach(fuction(x,y)&#123;</span><br><span class="line">	console.log(&apos;value:&apos;+ x)</span><br><span class="line">	console.log(&apos;key:&apos;+ y)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>Foreach 可以通过this  来获取这个a</p>
+<p>后期还要花时间身图学习和了解着函数des</p>
+<p> currentTarget 和target 的获取目标不因帝国</p>
+<h4 id="sort-排序的方法。还有它的逻辑方式"><a href="#sort-排序的方法。还有它的逻辑方式" class="headerlink" title="sort 排序的方法。还有它的逻辑方式"></a>sort 排序的方法。还有它的逻辑方式</h4><p>默认的返回数组排序返回式式正序的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a  = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">45</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">223</span>,<span class="number">9</span>]</span><br><span class="line">a.sort()</span><br><span class="line">(<span class="number">7</span>) [<span class="number">1</span>, <span class="number">2</span>, <span class="number">223</span>, <span class="number">3</span>, <span class="number">45</span>, <span class="number">6</span>, <span class="number">9</span>]</span><br><span class="line"><span class="comment">//默认的排序方法</span></span><br><span class="line"><span class="keyword">var</span> a  = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">45</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">223</span>,<span class="number">9</span>]ra</span><br><span class="line">(<span class="number">7</span>) [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">45</span>, <span class="number">223</span>]</span><br><span class="line"><span class="comment">// 正序或者反序要试着来，二选一， 纵游一是你想要的</span></span><br><span class="line"><span class="keyword">var</span> a  = [<span class="number">2</span>,<span class="number">3</span>,<span class="number">45</span>,<span class="number">6</span>,<span class="number">1</span>,<span class="number">223</span>,<span class="number">9</span>]</span><br><span class="line">a.sort(<span class="function"><span class="keyword">function</span>(<span class="params">x,y</span>)</span>&#123;<span class="keyword">return</span> y-x &#125;)</span><br><span class="line">(<span class="number">7</span>) [<span class="number">223</span>, <span class="number">45</span>, <span class="number">9</span>, <span class="number">6</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h1 id="join-amp-concat-amp-map-amp-filter-amp-reduce"><a href="#join-amp-concat-amp-map-amp-filter-amp-reduce" class="headerlink" title="join&amp;concat&amp;map&amp;filter&amp;reduce"></a>join&amp;concat&amp;map&amp;filter&amp;reduce</h1><ul>
+<li><h3 id="Join"><a href="#Join" class="headerlink" title="Join"></a>Join</h3></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.join(<span class="string">'para'</span>)</span><br><span class="line">&gt;&gt;&gt;&gt; <span class="string">'1para2para3'</span></span><br><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">a.join(<span class="string">''</span>)</span><br><span class="line"><span class="string">'1,2,3'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="concat"><a href="#concat" class="headerlink" title="concat"></a>concat</h3></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],b =. [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">a+b</span><br><span class="line">&gt;&gt;&gt; <span class="string">'1,2,34,5,6</span></span><br><span class="line"><span class="string">a.concant(b)</span></span><br><span class="line"><span class="string">&gt;&gt;&gt; [1,2,3,4,5,6]</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="map"><a href="#map" class="headerlink" title="map"></a>map</h3><p>是一种映射关系的方法，理解成地图  Map 就是经过处理后的现实世界  缩影</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//map处理完数组中的数据后 会返回新数组的</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">a.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value*<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line">&gt;&gt;&gt;&gt;  <span class="literal">undefined</span></span><br><span class="line"></span><br><span class="line">a.map(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value*<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line">&gt;&gt;&gt;&gt;. [<span class="number">2</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line"><span class="comment">// 用箭头函数来表示上面这个方法</span></span><br><span class="line">a.map(<span class="function"><span class="params">value</span> =&gt;</span> value*<span class="number">2</span>)</span><br><span class="line">&gt;&gt;&gt;&gt;. [<span class="number">2</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h3><p>根据要求过滤数据</p>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">a.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line">&gt;&gt;&gt; [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//链式操作</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>]</span><br><span class="line">a.map(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value*<span class="number">3</span></span><br><span class="line">&#125;).filter(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">15</span></span><br><span class="line">&#125;)</span><br><span class="line">&gt;&gt;&gt;&gt;  [<span class="number">15</span>, <span class="number">18</span>, <span class="number">24</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>]</span><br><span class="line">a.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">2</span></span><br><span class="line">&#125;).map(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value*<span class="number">3</span></span><br><span class="line">&#125;)</span><br><span class="line">&gt;&gt;&gt;&gt;  [<span class="number">9</span>, <span class="number">12</span>, <span class="number">6</span>, <span class="number">15</span>, <span class="number">18</span>, <span class="number">24</span>]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a>reduce</h3><ul>
+<li>map也可以用reduce表示</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">sum,n</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sum+n</span><br><span class="line">&#125;)</span><br><span class="line">&gt;&gt;&gt;&gt; <span class="number">15</span></span><br><span class="line">a.reduce(<span class="function">(<span class="params">sum,n</span>) =&gt;</span> sum+n,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 用reduce方法代表map</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>]</span><br><span class="line"><span class="keyword">let</span> b  = a.map(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value*<span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">arr,n</span>)</span>&#123;</span><br><span class="line">    arr.push(n*<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line">&#125;,[])</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用reduce 表达 filter</span></span><br><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">8</span>]</span><br><span class="line">a.filter(<span class="function"><span class="keyword">function</span>(<span class="params">value,key</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> value &gt;= <span class="number">2</span></span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//等价于</span></span><br><span class="line">a.reduce(<span class="function"><span class="keyword">function</span>(<span class="params">arr,n</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(n&gt;=<span class="number">2</span>)&#123;</span><br><span class="line">    arr.push(n)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> arr</span><br><span class="line">&#125;,[])</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Prototype/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Prototype/" class="post-title-link" itemprop="url">Prototype</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-12-18 22:18:20" itemprop="dateCreated datePublished" datetime="2019-12-18T22:18:20+08:00">2019-12-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 16:53:53" itemprop="dateModified" datetime="2021-04-09T16:53:53+08:00">2021-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="全局对象"><a href="#全局对象" class="headerlink" title="全局对象"></a>全局对象</h4><h4 id="windows的属性"><a href="#windows的属性" class="headerlink" title="windows的属性"></a>windows的属性</h4><ol>
+<li>共有的属性（ECMA规定）</li>
+</ol>
+<ul>
+<li>parseInt、parseFloat、number、string、object、window.setTimeout（window自带的api）</li>
+</ul>
+<ol>
+<li>私有的属性（浏览器的自定义）</li>
+</ol>
+<ul>
+<li>alert、prompt、confirm、console.log（）、document/Dom()w3c、history(浏览器)Bom</li>
+</ul>
+<h5 id="简单类型和对象的区别"><a href="#简单类型和对象的区别" class="headerlink" title="简单类型和对象的区别"></a>简单类型和对象的区别</h5><p>Number</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> n = <span class="number">1</span> </span><br><span class="line">n.toString()</span><br><span class="line"></span><br><span class="line">charAt() charCodeat() 取对象第几位数据</span><br><span class="line"></span><br><span class="line">.trim()去掉字符串的前后的空格 </span><br><span class="line">.concat()连接两个字符串</span><br><span class="line">.slice() 切取</span><br><span class="line"><span class="keyword">var</span> s = <span class="string">'hello'</span>  	s.slice(<span class="number">0</span>,<span class="number">3</span>)  </span><br><span class="line">&gt;&gt;&gt;&gt;&gt;.  <span class="string">'hel'</span></span><br><span class="line">.replace(<span class="string">''</span>,<span class="string">''</span>) 替换数据</span><br><span class="line">.split  正则</span><br></pre></td></tr></table></figure>
+
+<p>数据类型中的强记。    Again </p>
+<p>七种数据类新型，5个falsy值   还有就是内存图 基础中的基础</p>
+<p>公用属性的原型链</p>
+<p>内存图的解析对于属性和对象的关系了解颇为重要</p>
+<p>声明一个新的对象时候，系统会自带的进行 proto原型的继承</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__proto__;;隐藏属性</span><br></pre></td></tr></table></figure>
+
+<h4 id="js对象的结构就是一棵树"><a href="#js对象的结构就是一棵树" class="headerlink" title="js对象的结构就是一棵树"></a>js对象的结构就是一棵树</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span>  a = &#123;&#125;</span><br><span class="line">a.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line">   对象的原型继承就是来自对象类型本身的自带的属性</span><br><span class="line">&gt;&gt;&gt;&gt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> n = <span class="keyword">new</span> <span class="built_in">Number</span>(<span class="number">1</span>)</span><br><span class="line">n.__proto__ === <span class="built_in">Number</span>.prototype</span><br><span class="line">n.__proto__.__proto__ === <span class="built_in">Object</span>.prototype</span><br><span class="line"></span><br><span class="line">根节点的object.prototype 为<span class="literal">null</span></span><br></pre></td></tr></table></figure>
+
+<p>树的根节点是 object。然后跟节点下面的字节点对应的 string.prototype、number.prototype、…..</p>
+<p> Js引擎刷新的时候就会把原型继承树画好，把所有的对应的原型api绑定</p>
+<p>声明一个对象时，也会把Object的<strong>proto</strong>。绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.prototype  这是在js引擎刷新的时候引用 防止内存回收</span><br><span class="line">n.__proto__   这是在声明新的对象的时候，进行引用，饭后对对象进行操作的</span><br><span class="line"></span><br><span class="line">特殊的<span class="built_in">Function</span> 原型继承</span><br><span class="line">函数__proto__ === <span class="built_in">Function</span>.prototype</span><br><span class="line">Function__proto__ === <span class="built_in">Function</span>.prototype</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/原生js/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/原生js/" class="post-title-link" itemprop="url">原生js</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2019-09-09 19:10:20" itemprop="dateCreated datePublished" datetime="2019-09-09T19:10:20+08:00">2019-09-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 16:53:56" itemprop="dateModified" datetime="2021-04-09T16:53:56+08:00">2021-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="动画效应"><a href="#动画效应" class="headerlink" title="动画效应"></a>动画效应</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">定义一个圆圈 变化的恶，渐变的灰色源泉</span><br></pre></td></tr></table></figure>
+
+<p>记载的性能优化过程，需要调试项目的刷新，所以加载成为项目的用户体验优化的一项工程</p>
+<p>加载工程是为了网速慢过着浏览器加载卡顿设置准备的</p>
+<h5 id="监听用户滚动的效应"><a href="#监听用户滚动的效应" class="headerlink" title="监听用户滚动的效应"></a>监听用户滚动的效应</h5><p>window.onscroll</p>
+<p>对于节点元素的class 类的控制</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">''</span>).classList.add(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">classList.remove</span><br></pre></td></tr></table></figure>
+
+<p>if else 可以在性能优化的时候考虑用 三元运算符来进行代替</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color: inherit 继承父元素的css</span><br></pre></td></tr></table></figure>
+
+<p>动画效果的汇总。keyframes</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.slide&#123;</span><br><span class="line">	animation : move <span class="number">1</span>s</span><br><span class="line">&#125;</span><br><span class="line">@keyframes  move &#123;</span><br><span class="line">  <span class="number">0</span>%&#123;</span><br><span class="line">    width: <span class="number">0</span> ;</span><br><span class="line">		&#125;</span><br><span class="line">  <span class="number">100</span>%&#123;</span><br><span class="line">    width:<span class="number">100</span>%;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>导航栏的二级菜单，需要用工具库或者简单的：hover效果实现</p>
+<p>根据效果图的设计啊临幸下一个步骤的进行，然后对项目的优化，是实现项目完整化优化的整个体现过程</p>
+<h5 id="监听mouse的放上去和离开的事件"><a href="#监听mouse的放上去和离开的事件" class="headerlink" title="监听mouse的放上去和离开的事件"></a>监听mouse的放上去和离开的事件</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">onmouseenter</span><br><span class="line">onmouseleave</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取文档树上的兄弟节点"><a href="#获取文档树上的兄弟节点" class="headerlink" title="获取文档树上的兄弟节点"></a>获取文档树上的兄弟节点</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nextSilbling</span><br></pre></td></tr></table></figure>
+
+<h5 id="节点类型变量"><a href="#节点类型变量" class="headerlink" title="节点类型变量"></a>节点类型变量</h5><h5 id="判断节点类型"><a href="#判断节点类型" class="headerlink" title="判断节点类型"></a>判断节点类型</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">node.Element_Node.   元素节点   &gt;&gt;&gt;<span class="number">1</span></span><br><span class="line">node.Text_Node.  文本节点    &gt;&gt;&gt;<span class="number">3</span></span><br><span class="line"><span class="comment">//找获取节点的兄弟节点中的文本节点</span></span><br><span class="line"><span class="keyword">let</span> brother = a.nextSibling</span><br><span class="line"><span class="keyword">while</span>(brother.nodetype === <span class="number">3</span>)&#123;</span><br><span class="line">  brother = brother.nextSibling</span><br><span class="line">&#125;</span><br><span class="line">现在新增 nextElementSibling 直接寻找下个节点但是 兼容性还未做好，例如safari3，ie8都还未支持</span><br><span class="line">通用浏览器的最新版本都已经支持了</span><br></pre></td></tr></table></figure>
+
+<p>一个小知识点，获取ul 节点的tagname 返回值是 大写 UL</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node.getAttribute 获取元点的属性</span><br><span class="line"><span class="built_in">document</span>.querySelectorAll（） 选取选择器中所有的元素节点</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取a标签内的href不同的方法"><a href="#获取a标签内的href不同的方法" class="headerlink" title="获取a标签内的href不同的方法"></a>获取a标签内的href不同的方法</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a.href  带http协议的内容（因为经过浏览器的出路的）</span><br><span class="line">a.getAttribute(&apos;href&apos;) 就只获取href里面显示的内容</span><br></pre></td></tr></table></figure>
+
+<p>函数传的第一个参数有一个默认方法。preventDefault。阻止默认动作</p>
+<h5 id="获取目标元素的高度"><a href="#获取目标元素的高度" class="headerlink" title="获取目标元素的高度"></a>获取目标元素的高度</h5><p><strong><code>HTMLElement.offsetTop</code></strong> 为只读属性，它返回当前元素相对于其 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/offsetParent" target="_blank" rel="noopener"><code>offsetParent</code></a> 元素的顶部内边距的距离。</p>
+<p>windows.scoll(‘x’,’y’)  目标滚动的距离好看的</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setIterval <span class="comment">//定时器</span></span><br></pre></td></tr></table></figure>
+
+<p>let和var 的选择根据块级作用域的选择进行声明的 </p>
+<p>缓动函数的tween 的引用</p>
+<p>取数值的绝对值的方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1	Math.abs()</span><br><span class="line">2 let a = -22</span><br><span class="line">	let b = -aa</span><br></pre></td></tr></table></figure>
+
+<h5 id="获取子节点"><a href="#获取子节点" class="headerlink" title="获取子节点"></a>获取子节点</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node.children</span><br><span class="line">div.parentNode.children获取节点的所有同级（兄弟）节点包括自己 </span><br><span class="line">node.childNodes</span><br><span class="line"></span><br><span class="line">children和childNodes最大的区别是，无论什么浏览器使用，都不会把空白节点算进去，也不需要nodeType来帮助判断，直接使用</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Data-Type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -176,7 +957,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 15:58:53" itemprop="dateModified" datetime="2021-04-09T15:58:53+08:00">2021-04-09</time>
+                <time title="Modified: 2021-04-09 16:54:00" itemprop="dateModified" datetime="2021-04-09T16:54:00+08:00">2021-04-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -184,7 +965,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/share/" itemprop="url" rel="index"><span itemprop="name">share</span></a>
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
                 </span>
             </span>
 
@@ -357,7 +1138,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 14:52:04" itemprop="dateModified" datetime="2021-04-09T14:52:04+08:00">2021-04-09</time>
+                <time title="Modified: 2021-04-09 16:08:49" itemprop="dateModified" datetime="2021-04-09T16:08:49+08:00">2021-04-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -381,22 +1162,22 @@
 
       
           <p> 想混迹于代码世界，怎能不会一些简单的命令行</p>
-<h2 id="ls命令行-（list）"><a href="#ls命令行-（list）" class="headerlink" title="ls命令行 （list）"></a>ls命令行 （list）</h2><h3 id="ls-：查看当前路径下的显示文件"><a href="#ls-：查看当前路径下的显示文件" class="headerlink" title="ls ：查看当前路径下的显示文件"></a>ls ：查看当前路径下的显示文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">1.txt  blog/  testVue/  two/</span><br></pre></td></tr></table></figure>
+<h2 id="ls命令行-（list）"><a href="#ls命令行-（list）" class="headerlink" title="ls命令行 （list）"></a>ls命令行 （list）</h2><h3 id="ls-：查看当前路径下的显示文件"><a href="#ls-：查看当前路径下的显示文件" class="headerlink" title="ls ：查看当前路径下的显示文件"></a>ls ：查看当前路径下的显示文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">1.txt  blog/  testVue/  two/</span><br></pre></td></tr></table></figure>
 
-<h3 id="ls-a-：查看当前路径下的所有文件，包括隐藏文件（list-all）"><a href="#ls-a-：查看当前路径下的所有文件，包括隐藏文件（list-all）" class="headerlink" title="ls -a ：查看当前路径下的所有文件，包括隐藏文件（list -all）"></a>ls -a ：查看当前路径下的所有文件，包括隐藏文件（list -all）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -a</span><br><span class="line">./  ../  1.txt  blog/  testVue/  two/</span><br><span class="line">&lt;--此时新增的&quot;./&quot;和&quot;../&quot;就是隐藏的当前路径和父级路径--&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="ls-a-：查看当前路径下的所有文件，包括隐藏文件（list-all）"><a href="#ls-a-：查看当前路径下的所有文件，包括隐藏文件（list-all）" class="headerlink" title="ls -a ：查看当前路径下的所有文件，包括隐藏文件（list -all）"></a>ls -a ：查看当前路径下的所有文件，包括隐藏文件（list -all）</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -a</span><br><span class="line">./  ../  1.txt  blog/  testVue/  two/</span><br><span class="line">//此时新增的"./"和"../"就是隐藏的当前路径和父级路径</span><br></pre></td></tr></table></figure>
 
-<h3 id="ls-l-：查看当前路径下的文件的信息（list-longl）"><a href="#ls-l-：查看当前路径下的文件的信息（list-longl）" class="headerlink" title="ls -l ：查看当前路径下的文件的信息（list -longl）"></a>ls -l ：查看当前路径下的文件的信息（list -longl）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total 4</span><br><span class="line">-rw-r--r-- 1 STEVEN 197121 0 6月   1 12:55 1.txt</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   1 15:12 blog/</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 9月  26  2018 testVue/</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   2 00:41 two/</span><br><span class="line">&lt;--新增的文本就是关于文件的时间和权限信息--&gt;</span><br><span class="line">  ``` </span><br><span class="line">  ### ls -al ：查看当前路径下的所有文件（包括隐藏文件）的信息（list -all）</span><br></pre></td></tr></table></figure>
+<h3 id="ls-l-：查看当前路径下的文件的信息（list-longl）"><a href="#ls-l-：查看当前路径下的文件的信息（list-longl）" class="headerlink" title="ls -l ：查看当前路径下的文件的信息（list -longl）"></a>ls -l ：查看当前路径下的文件的信息（list -longl）</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ ls -l</span><br><span class="line">total 4</span><br><span class="line">-rw-r--r-- 1 STEVEN 197121 0 6月   1 12:55 1.txt</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   1 15:12 blog/</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 9月  26  2018 testVue/</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   2 00:41 two/</span><br><span class="line">//新增的文本就是关于文件的时间和权限信息</span><br></pre></td></tr></table></figure>
 
-<p>$ ls -al<br>total 16<br>drwxr-xr-x 1 STEVEN 197121 0 6月   1 19:20 ./<br>drwxr-xr-x 1 STEVEN 197121 0 6月   1 20:52 ../<br>-rw-r–r– 1 STEVEN 197121 0 6月   1 12:55 1.txt<br>drwxr-xr-x 1 STEVEN 197121 0 6月   1 15:12 blog/<br>drwxr-xr-x 1 STEVEN 197121 0 9月  26  2018 testVue/<br>drwxr-xr-x 1 STEVEN 197121 0 6月   2 00:41 two/<br>&lt;–就是 “-a” 和”-l”命令行的结合用法–&gt;<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##  cat命令行</span><br><span class="line">### cat: 用于连接文件并打印到标准输出设备上</span><br></pre></td></tr></table></figure></p>
-<p>$ cat ./blog<br>cat: ./blog: Is a directory<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">##  mv命令行 (move)</span><br><span class="line">### mv: 用来为文件或目录改名、或将文件或目录移入其它位置</span><br></pre></td></tr></table></figure></p>
-<p>$mv xxx aaa<br>&lt;–将xxx文件名修改为aaa–&gt;</p>
-<p>$mv xxx/ aaa<br>&lt;–将xxx目录放入aaa目录中，如果aaa目录不存在，则该命令将xxx改名为aaa–&gt;<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## touch命令行</span><br><span class="line">### touch : 新建文件或更新文件时间</span><br></pre></td></tr></table></figure></p>
-<p>$ touch  vue.txt<br>&lt;–在当前路径新建名为vue的txt文件–&gt;</p>
-<pre><code>  #### 当然这是一些简单的随笔，我们是记不住所有的命令的
-  #### 记忆模糊的就需要网上冲浪一下
-   #### 推荐一个在线命令行解释的网站 [Explainshell](https://explainshell.com/)
+<h3 id="ls-al-：查看当前路径下的所有文件（包括隐藏文件）的信息（list-all）"><a href="#ls-al-：查看当前路径下的所有文件（包括隐藏文件）的信息（list-all）" class="headerlink" title="ls -al ：查看当前路径下的所有文件（包括隐藏文件）的信息（list -all）"></a>ls -al ：查看当前路径下的所有文件（包括隐藏文件）的信息（list -all）</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ ls -al</span><br><span class="line">total 16</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   1 19:20 ./</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   1 20:52 ../</span><br><span class="line">-rw-r--r-- 1 STEVEN 197121 0 6月   1 12:55 1.txt</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   1 15:12 blog/</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 9月  26  2018 testVue/</span><br><span class="line">drwxr-xr-x 1 STEVEN 197121 0 6月   2 00:41 two/</span><br><span class="line">//就是 "-a" 和"-l"命令行的结合用法</span><br></pre></td></tr></table></figure>
 
-![image.png](//static.xiedaimala.com/xdml/image/ef906d9a-e453-4255-b7e0-6d60d9ed3a3b/2019-6-2-16-58-48.png)</code></pre>
+<h2 id="cat命令行"><a href="#cat命令行" class="headerlink" title="cat命令行"></a>cat命令行</h2><h3 id="cat-用于连接文件并打印到标准输出设备上"><a href="#cat-用于连接文件并打印到标准输出设备上" class="headerlink" title="cat: 用于连接文件并打印到标准输出设备上"></a>cat: 用于连接文件并打印到标准输出设备上</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat ./blog</span><br><span class="line">cat: ./blog: Is a directory</span><br></pre></td></tr></table></figure>
+
+<h2 id="mv命令行-move"><a href="#mv命令行-move" class="headerlink" title="mv命令行 (move)"></a>mv命令行 (move)</h2><h3 id="mv-用来为文件或目录改名、或将文件或目录移入其它位置"><a href="#mv-用来为文件或目录改名、或将文件或目录移入其它位置" class="headerlink" title="mv: 用来为文件或目录改名、或将文件或目录移入其它位置"></a>mv: 用来为文件或目录改名、或将文件或目录移入其它位置</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$mv xxx aaa</span><br><span class="line">&lt;--将xxx文件名修改为aaa--&gt;</span><br><span class="line"></span><br><span class="line">$mv xxx/ aaa</span><br><span class="line">//将xxx目录放入aaa目录中，如果aaa目录不存在，则该命令将xxx改名为aaa</span><br></pre></td></tr></table></figure>
+
+<h2 id="touch命令行"><a href="#touch命令行" class="headerlink" title="touch命令行"></a>touch命令行</h2><h3 id="touch-新建文件或更新文件时间"><a href="#touch-新建文件或更新文件时间" class="headerlink" title="touch : 新建文件或更新文件时间"></a>touch : 新建文件或更新文件时间</h3>  <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ touch  vue.txt</span><br><span class="line">//在当前路径新建名为vue的txt文件</span><br></pre></td></tr></table></figure>
+
+<h4 id="当然这是一些简单的随笔，我们是记不住所有的命令的"><a href="#当然这是一些简单的随笔，我们是记不住所有的命令的" class="headerlink" title="当然这是一些简单的随笔，我们是记不住所有的命令的"></a>当然这是一些简单的随笔，我们是记不住所有的命令的</h4><h4 id="记忆模糊的就需要网上冲浪一下"><a href="#记忆模糊的就需要网上冲浪一下" class="headerlink" title="记忆模糊的就需要网上冲浪一下"></a>记忆模糊的就需要网上冲浪一下</h4><h4 id="推荐一个在线命令行解释的网站-Explainshell"><a href="#推荐一个在线命令行解释的网站-Explainshell" class="headerlink" title="推荐一个在线命令行解释的网站 Explainshell"></a>推荐一个在线命令行解释的网站 <a href="https://explainshell.com/" target="_blank" rel="noopener">Explainshell</a></h4><p><img src="//static.xiedaimala.com/xdml/image/ef906d9a-e453-4255-b7e0-6d60d9ed3a3b/2019-6-2-16-58-48.png" alt="image.png"></p>
+
       
     </div>
 
@@ -446,7 +1227,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 14:52:04" itemprop="dateModified" datetime="2021-04-09T14:52:04+08:00">2021-04-09</time>
+                <time title="Modified: 2021-04-09 16:54:29" itemprop="dateModified" datetime="2021-04-09T16:54:29+08:00">2021-04-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -454,7 +1235,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                  <a href="/categories/Poems/" itemprop="url" rel="index"><span itemprop="name">Poems</span></a>
                 </span>
             </span>
 
@@ -520,7 +1301,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 14:52:04" itemprop="dateModified" datetime="2021-04-09T14:52:04+08:00">2021-04-09</time>
+                <time title="Modified: 2021-04-09 16:54:10" itemprop="dateModified" datetime="2021-04-09T16:54:10+08:00">2021-04-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -528,7 +1309,7 @@
               </span>
               <span class="post-meta-item-text">In</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a>
+                  <a href="/categories/Poems/" itemprop="url" rel="index"><span itemprop="name">Poems</span></a>
                 </span>
             </span>
 
@@ -625,7 +1406,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -634,7 +1415,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
