@@ -145,6 +145,112 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Algorithm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Algorithm/" class="post-title-link" itemprop="url">Algorithm</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2021-04-09 17:17:15 / Modified: 17:17:48" itemprop="dateCreated datePublished" datetime="2021-04-09T17:17:15+08:00">2021-04-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h2><ul>
+<li>输入：有数据进行操作 （数据可以）</li>
+<li>输出：运算后的结果  （必须有结果）</li>
+<li>明确性：要理解才能被执行</li>
+<li>有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成</li>
+<li>有效性：可行性</li>
+</ul>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>解释数据的结构</p>
+<ol>
+<li>解决跟数据相关的问题</li>
+<li>分析问题，定义明确其数据的结构</li>
+<li>分析结构，选择算法</li>
+</ol>
+<p>大分类算法</p>
+<ul>
+<li>分治法：把一个问题划分成相互的独立的部分并解决问题，优点 ：进行并行计算</li>
+<li>动态规则法：当问题的整体最优解就是由局部最优解组成的时候，适合开放性问题</li>
+<li>贪婪算法：当问题的整体最优解不（或无法证明）是由局部最优解组成的时候，且对最优解没有要求的时候</li>
+<li>线性规则：baidu</li>
+<li>简并法：把一个问题进行逻辑或数学推理，简化成与之相近似，相对简单的的数学模型，进而求解的方法。</li>
+</ul>
+<p>前端主要是分治法</p>
+<h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><ol>
+<li><p>体育委员两两对比排序 。  冒泡排序法  两两比较</p>
+</li>
+<li><p>体育老师一指禅。选择排序 max 或者 min 逐渐排序</p>
+</li>
+<li><p>从牌堆中  然后手抓扑克牌排序。  扑克牌算法(声明空数组，一一抓牌排序) </p>
+</li>
+<li><p>强迫症收扑克牌法。 桶排序   数据归纳分理</p>
+</li>
+<li><p>快排。  radom 随机快排，避免出现快排最坏情况的排序 </p>
+</li>
+<li><p>归并排序</p>
+</li>
+<li><p>堆排序</p>
+</li>
+</ol>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>O(n*n)<br>冒泡排序：体育课排队身高排序，两两对比排序<br>2 O(n log2 n)<br>快速排序，以第一个数字n为分界线进行遍历，暂存数设为m= n+1，遍历数据，小于n的数与m交换后m要加1，<br>因为要用暂存数m把大于和小于基数n的分隔开，以此遍历完数据后，交换m和n，交换后的以n为坐标的左区间<br>要先排序，把左区间的数据进行一次上述操作，满足新的n等于旧n条件时，即可确定以旧n为坐标的左区间的<br>排序，以此类推完成排序<br>3 O(n + max)<br>基数排序。（有点类似桶排序，但是桶个数固定，个位然后十位百位进行排序)<br>排序的基准就是按照0～9的桶序装入数据，数据的判定按照当前取数位是，个十百千万哪一位<br>从个位然后十位百位进行排序</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Ajax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -168,10 +274,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2021-04-09 16:52:57 / Modified: 16:54:32" itemprop="dateCreated datePublished" datetime="2021-04-09T16:52:57+08:00">2021-04-09</time>
+              <time title="Created: 2020-03-01 21:52:57" itemprop="dateCreated datePublished" datetime="2020-03-01T21:52:57+08:00">2020-03-01</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 16:56:10" itemprop="dateModified" datetime="2021-04-09T16:56:10+08:00">2021-04-09</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -712,6 +824,84 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/记笔/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/记笔/" class="post-title-link" itemprop="url">记笔</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-01-01 17:07:34" itemprop="dateCreated datePublished" datetime="2020-01-01T17:07:34+08:00">2020-01-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-09 17:08:45" itemprop="dateModified" datetime="2021-04-09T17:08:45+08:00">2021-04-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Poems/" itemprop="url" rel="index"><span itemprop="name">Poems</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>过而有踪<br>行而有迹<br>学而有思<br>习而有忆</p>
+<p>踪迹随风逝<br>记忆流光散</p>
+<p>三思强记<br>执笔烙印</p>
+<p>每当我回眸一闪<br>它就在这里<br>不弃不离<br>曾经或者现在还是将来</p>
+<p>笔记–伴随你</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1192,156 +1382,11 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/愿我们能继续砥砺前行/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Steven Zou">
-      <meta itemprop="description" content>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不久之前 我们也都是少年">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/愿我们能继续砥砺前行/" class="post-title-link" itemprop="url">愿我们能继续砥砺前行</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-02 01:26:19" itemprop="dateCreated datePublished" datetime="2019-06-02T01:26:19+08:00">2019-06-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 16:54:29" itemprop="dateModified" datetime="2021-04-09T16:54:29+08:00">2021-04-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Poems/" itemprop="url" rel="index"><span itemprop="name">Poems</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><img src="https://i.loli.net/2019/06/02/5cf2f567de32696629.jpg" alt="kankan.jpg"></p>
-<h2 id="匆匆20载-少年不在-初心依旧-愿我们能继续砥砺前行"><a href="#匆匆20载-少年不在-初心依旧-愿我们能继续砥砺前行" class="headerlink" title="匆匆20载 少年不在 初心依旧 愿我们能继续砥砺前行"></a>匆匆20载 少年不在 初心依旧 愿我们能继续砥砺前行</h2><pre><code>朝花夕拾  不忘初心  劈荆斩棘  战胜自己</code></pre>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/开博大吉/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Steven Zou">
-      <meta itemprop="description" content>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不久之前 我们也都是少年">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/开博大吉/" class="post-title-link" itemprop="url">Live And Learn</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-02 01:04:47" itemprop="dateCreated datePublished" datetime="2019-06-02T01:04:47+08:00">2019-06-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-09 16:54:10" itemprop="dateModified" datetime="2021-04-09T16:54:10+08:00">2021-04-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Poems/" itemprop="url" rel="index"><span itemprop="name">Poems</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="路上没有捷径"><a href="#路上没有捷径" class="headerlink" title="路上没有捷径"></a>路上没有捷径</h2><p>   记忆的起始点<br>   婴儿的啼哭<br>   孩童的嬉笑<br>   少年的奔跑<br>   青年的躁动<br>   成年的荷尔蒙<br>   串联成现在的我们<br>   悸动的心还是热的<br>   心跳的频率还是激情的节奏<br>   可是勇气和信心被磨灭<br>   浮华与蒙蔽<br>   看不清这世界<br>   看不清自己<br>   模糊了的双眸<br>   怎么揉也揉不散那层雾<br>   霾 是细小颗粒的分散<br>   错 是万千机缘的巧遇<br>   霾而不散 那是一片蓝天白云<br>   错而不遇 我们还是赤子之心</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -1406,7 +1451,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1415,7 +1460,7 @@
         <span class="site-state-item-name">categories</span>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
