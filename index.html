@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="zh-Hans">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -24,7 +24,7 @@
 <meta property="og:title" content="不久之前 我们也都是少年">
 <meta property="og:url" content="http://yoursite.com/index.html">
 <meta property="og:site_name" content="不久之前 我们也都是少年">
-<meta property="og:locale" content="default">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="不久之前 我们也都是少年">
 
@@ -37,7 +37,7 @@
     sidebar: "",
     isHome : true,
     isPost : false,
-    lang   : 'default'
+    lang   : 'zh-Hans'
   };
 </script>
 
@@ -154,7 +154,142 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/数据结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/数据结构/" class="post-title-link" itemprop="url">数据结构</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-21 14:56:51" itemprop="dateCreated datePublished" datetime="2020-04-21T14:56:51+08:00">2020-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-04-10 14:59:02" itemprop="dateModified" datetime="2021-04-10T14:59:02+08:00">2021-04-10</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ol>
+<li><p>哈希 （Hash）遍历数组后进行归类结构化</p>
+<ul>
+<li>计数排序中的桶（复杂度0（n+max），比快排还快）<ul>
+<li>hash 遍历数组后进行入桶排序，然后对入桶后的数据进行出桶处理(处理数据近似和有不少数据重复的数组对象)</li>
+</ul>
+</li>
+<li>桶排序（对数据进行区间段 举例:0～10、11～20; 的排序）与计数排序的区别</li>
+<li>基数排序(桶个数固定，个位然后十位百位进行排序)与计数排序的区别</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">符合以下要求” 键 值 “格式的对象，就是哈希</span><br><span class="line">a =&#123;</span><br><span class="line">  <span class="string">'0'</span> : aa;</span><br><span class="line">  <span class="string">'1'</span> : bb;</span><br><span class="line">  <span class="string">'key'</span> : <span class="string">'value'</span>;</span><br><span class="line">  <span class="string">'键'</span> : <span class="string">'值'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>队列 （Queue）</p>
+<ul>
+<li><p>先进先出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">arr.push(<span class="string">'1'</span>)</span><br><span class="line">arr.push(<span class="string">'2'</span>)</span><br><span class="line">arr.push(<span class="string">'3'</span>)</span><br><span class="line">arr [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.shift(<span class="string">'1'</span>)  arr[<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">arr.shift(<span class="string">'2'</span>)  ar[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>可以用数组实现</p>
+</li>
+<li><p>举例：排队</p>
+</li>
+</ul>
+</li>
+<li><p>栈（Stack）</p>
+<ul>
+<li><p>先进后出</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> stack = []</span><br><span class="line">stack.push(<span class="string">'1'</span>)</span><br><span class="line">stack.push(<span class="string">'2'</span>)</span><br><span class="line">stack.push(<span class="string">'3'</span>)</span><br><span class="line"></span><br><span class="line">stack.pop(<span class="string">'3'</span>)</span><br><span class="line">stack.poo(<span class="string">'2'</span>)</span><br><span class="line">stack.poo(<span class="string">'1'</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>可以用数组实现</p>
+</li>
+<li><p>举例：盗梦空间 进挤满的电梯</p>
+</li>
+</ul>
+<ol start="4">
+<li><p>链表（Linked List）【数据通过抽象链子连接起来的数据】</p>
+<ul>
+<li>数组无法直接删除中间的一项，链表可以</li>
+<li>用哈希（Js里面用对象表示哈希）实现链表</li>
+<li>head、node概念</li>
+</ul>
+</li>
+<li><p>树（Tree）</p>
+<ul>
+<li>举例：层级结构、Dom</li>
+<li>概念：层级、深度、节点个数</li>
+<li>二叉树 （节点的分支不超过2个分支）</li>
+<li>满二叉树 （每个节点都有两个分支）</li>
+<li>完全二叉树（除最后一层，其他节点都是两个分支，最后一层节点的分支只能从左到右或者从右到左连续没有分支）</li>
+<li>完全二叉树和满二叉树可以用数组实现存储数据</li>
+<li>其他树可以用哈希（对象）实现</li>
+<li>操作：增删改查</li>
+<li>堆排序用到了树的数据结构</li>
+</ul>
+</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Algorithm/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -242,7 +377,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Ajax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -328,7 +463,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/DomEvents/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -411,7 +546,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Dom/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -494,7 +629,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Hash结构-数组及其Api/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -583,7 +718,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/记笔/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -664,7 +799,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Prototype/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -757,7 +892,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/原生js/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -841,7 +976,7 @@
       
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-Hans">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Data-Type/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -900,90 +1035,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/post/Data-Type/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/line/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Steven Zou">
-      <meta itemprop="description" content>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不久之前 我们也都是少年">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/line/" class="post-title-link" itemprop="url">Command Line</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2019-06-02 17:01:16" itemprop="dateCreated datePublished" datetime="2019-06-02T17:01:16+08:00">2019-06-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2021-04-10 00:01:21" itemprop="dateModified" datetime="2021-04-10T00:01:21+08:00">2021-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p> 想混迹于代码世界，怎能不会一些简单的命令行</p>
-<h2 id="ls命令行-（list）"><a href="#ls命令行-（list）" class="headerlink" title="ls命令行 （list）"></a>ls命令行 （list）</h2><h3 id="ls-：查看当前路径下的显示文件"><a href="#ls-：查看当前路径下的显示文件" class="headerlink" title="ls ：查看当前路径下的显示文件"></a>ls ：查看当前路径下的显示文件</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ls</span><br><span class="line">1.txt  blog/  testVue/  two/</span><br></pre></td></tr></table></figure>
-
-<h3 id="ls-a-：查看当前路径下的所有文件，包括隐藏文件（list-all）"><a href="#ls-a-：查看当前路径下的所有文件，包括隐藏文件（list-all）" class="headerlink" title="ls -a ：查看当前路径下的所有文件，包括隐藏文件（list -all）"></a>ls -a ：查看当前路径下的所有文件，包括隐藏文件（list -all）</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ ls -a</span><br><span class="line">./  ../  1.txt  blog/  testVue/  two/</span><br><span class="line">//此时新增的"./"和"../"就是隐藏的当前路径和父级路径</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/line/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1073,7 +1124,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1086,7 +1137,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
