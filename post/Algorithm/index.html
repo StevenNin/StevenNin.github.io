@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="算法 输入：有数据进行操作 （数据可以） 输出：运算后的结果  （必须有结果） 明确性：要理解才能被执行 有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成 有效性：可行性  数据结构">
+  <meta name="description" content="算法 输入：有数据进行操作 （数据可以） 输出：运算后的结果  （必须有结果） 明确性：要理解才能被执行 有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成 有效性：可行性  基础概念">
 <meta name="keywords" content="Algorithm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Algorithm">
 <meta property="og:url" content="http://yoursite.com/post/Algorithm/index.html">
 <meta property="og:site_name" content="不久之前 我们也都是少年">
-<meta property="og:description" content="算法 输入：有数据进行操作 （数据可以） 输出：运算后的结果  （必须有结果） 明确性：要理解才能被执行 有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成 有效性：可行性  数据结构">
+<meta property="og:description" content="算法 输入：有数据进行操作 （数据可以） 输出：运算后的结果  （必须有结果） 明确性：要理解才能被执行 有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成 有效性：可行性  基础概念">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-04-09T16:01:33.117Z">
+<meta property="og:updated_time" content="2021-04-12T06:31:49.547Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Algorithm">
-<meta name="twitter:description" content="算法 输入：有数据进行操作 （数据可以） 输出：运算后的结果  （必须有结果） 明确性：要理解才能被执行 有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成 有效性：可行性  数据结构">
+<meta name="twitter:description" content="算法 输入：有数据进行操作 （数据可以） 输出：运算后的结果  （必须有结果） 明确性：要理解才能被执行 有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成 有效性：可行性  基础概念">
 
 <link rel="canonical" href="http://yoursite.com/post/Algorithm/">
 
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-10 00:01:33" itemprop="dateModified" datetime="2021-04-10T00:01:33+08:00">2021-04-10</time>
+                <time title="修改时间：2021-04-12 14:31:49" itemprop="dateModified" datetime="2021-04-12T14:31:49+08:00">2021-04-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,8 +221,16 @@
 <li>有限性：有限个状态 符号 指令 ，这些都要在有限个步骤内完成</li>
 <li>有效性：可行性</li>
 </ul>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2> <a id="more"></a>
-<p>解释数据的结构</p>
+<h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><a id="more"></a>
+
+<h4 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>一个算法执行苏需要的时间</p>
+<h4 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h4><p>算法执行所需要的内存空间</p>
+<h4 id="原地排序"><a href="#原地排序" class="headerlink" title="原地排序"></a>原地排序</h4><p>存储的过程中不需要更多的内存空间进行计算，只利用原来的存储的空间进行比较交换的数据</p>
+<h4 id="非原地排序"><a href="#非原地排序" class="headerlink" title="非原地排序"></a>非原地排序</h4><p>需要额外的数组进行排序</p>
+<h4 id="稳定排序"><a href="#稳定排序" class="headerlink" title="稳定排序"></a>稳定排序</h4><p>即相同的两个数排序后的顺序不变</p>
+<p>a === b 但是 排序序顺序 a在前面，经过算法排序后a还在b前面</p>
+<h4 id="非稳定排序"><a href="#非稳定排序" class="headerlink" title="非稳定排序"></a>非稳定排序</h4><p>与稳定排序概念相反</p>
+<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><p>解释数据的结构</p>
 <ol>
 <li>解决跟数据相关的问题</li>
 <li>分析问题，定义明确其数据的结构</li>
@@ -238,22 +246,15 @@
 </ul>
 <p>前端主要是分治法</p>
 <h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><ol>
-<li><p>体育委员两两对比排序 。  冒泡排序法  两两比较</p>
-</li>
-<li><p>体育老师一指禅。选择排序 max 或者 min 逐渐排序</p>
-</li>
-<li><p>从牌堆中  然后手抓扑克牌排序。  扑克牌算法(声明空数组，一一抓牌排序) </p>
-</li>
-<li><p>强迫症收扑克牌法。 桶排序   数据归纳分理</p>
-</li>
-<li><p>快排。  radom 随机快排，避免出现快排最坏情况的排序 </p>
-</li>
-<li><p>归并排序</p>
-</li>
-<li><p>堆排序</p>
-</li>
+<li>体育委员两两对比排序 。  冒泡排序法  两两比较</li>
+<li>体育老师一指禅。选择排序 max 或者 min 逐渐排序</li>
+<li>从牌堆中  然后手抓扑克牌排序。  扑克牌算法(声明空数组，一一抓牌排序) </li>
+<li>强迫症收扑克牌法。 桶排序   数据归纳分理</li>
+<li>快排。  radom 随机快排，避免出现快排最坏情况的排序 </li>
+<li>归并排序(了解)</li>
+<li>堆排序（）</li>
 </ol>
-<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>O(n*n)<br>冒泡排序：体育课排队身高排序，两两对比排序<br>2 O(n log2 n)<br>快速排序，以第一个数字n为分界线进行遍历，暂存数设为m= n+1，遍历数据，小于n的数与m交换后m要加1，<br>因为要用暂存数m把大于和小于基数n的分隔开，以此遍历完数据后，交换m和n，交换后的以n为坐标的左区间<br>要先排序，把左区间的数据进行一次上述操作，满足新的n等于旧n条件时，即可确定以旧n为坐标的左区间的<br>排序，以此类推完成排序<br>3 O(n + max)<br>基数排序。（有点类似桶排序，但是桶个数固定，个位然后十位百位进行排序)<br>排序的基准就是按照0～9的桶序装入数据，数据的判定按照当前取数位是，个十百千万哪一位<br>从个位然后十位百位进行排序</p>
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><p>1 O(n*n)<br>冒泡排序：体育课排队身高排序，两两对比排序<br>2 O(n log2 n)<br>快速排序，以第一个数字n为分界线进行遍历，暂存数设为m= n+1，遍历数据，小于n的数与m交换后m要加1，<br>因为要用暂存数m把大于和小于基数n的分隔开，以此遍历完数据后，交换m和n，交换后的以n为坐标的左区间<br>要先排序，把左区间的数据进行一次上述操作，满足新的n等于旧n条件时，即可确定以旧n为坐标的左区间的<br>排序，以此类推完成排序<br>3 O(n + max)<br>基数排序。（有点类似桶排序，但是桶个数固定，个位然后十位百位进行排序)<br>排序的基准就是按照0～9的桶序装入数据，数据的判定按照当前取数位是，个十百千万哪一位<br>从个位然后十位百位进行排序</p>
 
     </div>
 
@@ -337,7 +338,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">2.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序算法"><span class="nav-number">3.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度"><span class="nav-number">3.1.</span> <span class="nav-text">复杂度</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法"><span class="nav-number">1.</span> <span class="nav-text">算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础概念"><span class="nav-number">2.</span> <span class="nav-text">基础概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂度"><span class="nav-number">2.0.1.</span> <span class="nav-text">时间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#空间复杂度"><span class="nav-number">2.0.2.</span> <span class="nav-text">空间复杂度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原地排序"><span class="nav-number">2.0.3.</span> <span class="nav-text">原地排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非原地排序"><span class="nav-number">2.0.4.</span> <span class="nav-text">非原地排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#稳定排序"><span class="nav-number">2.0.5.</span> <span class="nav-text">稳定排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非稳定排序"><span class="nav-number">2.0.6.</span> <span class="nav-text">非稳定排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">3.</span> <span class="nav-text">数据结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#排序算法"><span class="nav-number">4.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度"><span class="nav-number">4.1.</span> <span class="nav-text">复杂度</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -365,7 +366,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
