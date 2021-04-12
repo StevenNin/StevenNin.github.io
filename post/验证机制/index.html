@@ -20,18 +20,18 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Cookie vs LocalStorage vs. SessionStorage vs SessionCookie ：服务器 – 浏览器 – 一段字符串（小型文本的存储） session：会话，表示浏览器与服务器一段时间的会话 LocalStorage：允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sess">
+  <meta name="description" content="Cookie vs LocalStorage vs. SessionStorage vs SessionCookie服务器 – 浏览器 – 一段字符串（小型文本的存储） session会话，表示浏览器与服务器一段时间的会话 LocalStorage允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sessionS">
 <meta name="keywords" content="cookie-session,JWT">
 <meta property="og:type" content="article">
 <meta property="og:title" content="缓存机制">
 <meta property="og:url" content="http://yoursite.com/post/验证机制/index.html">
 <meta property="og:site_name" content="不久之前 我们也都是少年">
-<meta property="og:description" content="Cookie vs LocalStorage vs. SessionStorage vs SessionCookie ：服务器 – 浏览器 – 一段字符串（小型文本的存储） session：会话，表示浏览器与服务器一段时间的会话 LocalStorage：允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sess">
+<meta property="og:description" content="Cookie vs LocalStorage vs. SessionStorage vs SessionCookie服务器 – 浏览器 – 一段字符串（小型文本的存储） session会话，表示浏览器与服务器一段时间的会话 LocalStorage允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sessionS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-04-12T08:13:45.397Z">
+<meta property="og:updated_time" content="2021-04-12T10:29:55.359Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="缓存机制">
-<meta name="twitter:description" content="Cookie vs LocalStorage vs. SessionStorage vs SessionCookie ：服务器 – 浏览器 – 一段字符串（小型文本的存储） session：会话，表示浏览器与服务器一段时间的会话 LocalStorage：允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sess">
+<meta name="twitter:description" content="Cookie vs LocalStorage vs. SessionStorage vs SessionCookie服务器 – 浏览器 – 一段字符串（小型文本的存储） session会话，表示浏览器与服务器一段时间的会话 LocalStorage允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。localStorage 类似 sessionS">
 
 <link rel="canonical" href="http://yoursite.com/post/验证机制/">
 
@@ -191,7 +191,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-12 16:13:45" itemprop="dateModified" datetime="2021-04-12T16:13:45+08:00">2021-04-12</time>
+                <time title="修改时间：2021-04-12 18:29:55" itemprop="dateModified" datetime="2021-04-12T18:29:55+08:00">2021-04-12</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -214,11 +214,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Cookie-vs-LocalStorage-vs-SessionStorage-vs-Session"><a href="#Cookie-vs-LocalStorage-vs-SessionStorage-vs-Session" class="headerlink" title="Cookie vs LocalStorage vs. SessionStorage vs Session"></a>Cookie vs LocalStorage vs. SessionStorage vs Session</h3><p>Cookie ：服务器 – 浏览器 – 一段字符串（小型文本的存储）</p>
-<p>session：会话，表示浏览器与服务器一段时间的会话</p>
-<p>LocalStorage：允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。<code>localStorage</code> 类似 sessionStorage，但其区别在于：存储在 <code>localStorage</code> 的数据可以长期保留</p>
-<p>SessionStorage：允许你访问一个，对应当前源的 sessionStorage 对象。它与 localStorage 相似，不同之处在于 <code>localStorage</code> 里面存储的数据没有过期时间设置，而存储在 <code>sessionStorage</code> 里面的数据在页面会话结束时会被清除。</p>
+        <h3 id="Cookie-vs-LocalStorage-vs-SessionStorage-vs-Session"><a href="#Cookie-vs-LocalStorage-vs-SessionStorage-vs-Session" class="headerlink" title="Cookie vs LocalStorage vs. SessionStorage vs Session"></a>Cookie vs LocalStorage vs. SessionStorage vs Session</h3><h5 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h5><p>服务器 – 浏览器 – 一段字符串（小型文本的存储）</p>
+<h5 id="session"><a href="#session" class="headerlink" title="session"></a>session</h5><p>会话，表示浏览器与服务器一段时间的会话</p>
+<h5 id="LocalStorage"><a href="#LocalStorage" class="headerlink" title="LocalStorage"></a>LocalStorage</h5><p>允许你访问一个Document源（origin）的对象 Storage；存储的数据将保存在浏览器会话中。<code>localStorage</code> 类似 sessionStorage，但其区别在于：存储在 <code>localStorage</code> 的数据可以长期保留</p>
+<h5 id="SessionStorage"><a href="#SessionStorage" class="headerlink" title="SessionStorage"></a>SessionStorage</h5><p>允许你访问一个，对应当前源的 sessionStorage 对象。它与 localStorage 相似，不同之处在于 <code>localStorage</code> 里面存储的数据没有过期时间设置，而存储在 <code>sessionStorage</code> 里面的数据在页面会话结束时会被清除。</p>
  <a id="more"></a>
+
+
 
 <p>session在服务器上，cookie在浏览器上</p>
 <p>session基于cookie：因为session-ID 存储在cookie里面的</p>
@@ -325,7 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-vs-LocalStorage-vs-SessionStorage-vs-Session"><span class="nav-number">1.</span> <span class="nav-text">Cookie vs LocalStorage vs. SessionStorage vs Session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-Session-身份验证"><span class="nav-number">2.</span> <span class="nav-text">Cookie-Session 身份验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT-机制"><span class="nav-number"></span> <span class="nav-text">JWT 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#header"><span class="nav-number">0.1.</span> <span class="nav-text">header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#payload"><span class="nav-number">0.2.</span> <span class="nav-text">payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Signature"><span class="nav-number">0.3.</span> <span class="nav-text">Signature</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-vs-LocalStorage-vs-SessionStorage-vs-Session"><span class="nav-number">1.</span> <span class="nav-text">Cookie vs LocalStorage vs. SessionStorage vs Session</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Cookie"><span class="nav-number">1.0.1.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#session"><span class="nav-number">1.0.2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LocalStorage"><span class="nav-number">1.0.3.</span> <span class="nav-text">LocalStorage</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SessionStorage"><span class="nav-number">1.0.4.</span> <span class="nav-text">SessionStorage</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-Session-身份验证"><span class="nav-number">2.</span> <span class="nav-text">Cookie-Session 身份验证</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT-机制"><span class="nav-number"></span> <span class="nav-text">JWT 机制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#header"><span class="nav-number">0.1.</span> <span class="nav-text">header</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#payload"><span class="nav-number">0.2.</span> <span class="nav-text">payload</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Signature"><span class="nav-number">0.3.</span> <span class="nav-text">Signature</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
