@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="mvvm框架（Model ，View,ViewModel） 响应式布局。会进行数据的绑定操作，observer 会监听数据的属性，在绑定的过程中，vue的defineProperty会把这些属性转换为getter/setter。内部会形成跟踪依赖，一旦被访问或者修改就会通过watcher通知其相关的 Style 里添加scope 就是只对当前对应的template生效">
+<meta name="keywords" content="vue">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue">
+<meta property="og:url" content="http://yoursite.com/post/Vue/index.html">
+<meta property="og:site_name" content="不久之前 我们也都是少年">
+<meta property="og:description" content="mvvm框架（Model ，View,ViewModel） 响应式布局。会进行数据的绑定操作，observer 会监听数据的属性，在绑定的过程中，vue的defineProperty会把这些属性转换为getter/setter。内部会形成跟踪依赖，一旦被访问或者修改就会通过watcher通知其相关的 Style 里添加scope 就是只对当前对应的template生效">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-04-23T16:16:37.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vue">
+<meta name="twitter:description" content="mvvm框架（Model ，View,ViewModel） 响应式布局。会进行数据的绑定操作，observer 会监听数据的属性，在绑定的过程中，vue的defineProperty会把这些属性转换为getter/setter。内部会形成跟踪依赖，一旦被访问或者修改就会通过watcher通知其相关的 Style 里添加scope 就是只对当前对应的template生效">
+
+<link rel="canonical" href="http://yoursite.com/post/Vue/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue | 不久之前 我们也都是少年</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">不久之前 我们也都是少年</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Vue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-24 00:13:54 / 修改时间：00:16:37" itemprop="dateCreated datePublished" datetime="2021-04-24T00:13:54+08:00">2021-04-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>mvvm框架（Model ，View,ViewModel）</p>
+<p>响应式布局。会进行数据的绑定操作，observer 会监听数据的属性，在绑定的过程中，vue的defineProperty会把这些属性转换为getter/setter。内部会形成跟踪依赖，一旦被访问或者修改就会通过watcher通知其相关的</p>
+<p>Style 里添加scope 就是只对当前对应的template生效</p>
+ <a id="more"></a>
+
+<p>安装依赖的时候遇到的坑，因为版本的不兼容，安装后，回退版本。根据兼容要求来回安装。折腾死了我</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code ERESOLVE</span><br><span class="line">npm ERR! ERESOLVE unable to resolve dependency tree</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! While resolving: ceshi@<span class="number">1.0</span><span class="number">.0</span></span><br><span class="line">npm ERR! Found: webpack@<span class="number">3.12</span><span class="number">.0</span>       </span><br><span class="line">npm ERR! node_modules/webpack        </span><br><span class="line">npm ERR!   dev webpack@<span class="string">"^3.6.0"</span> <span class="keyword">from</span> the root project</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! Could not resolve dependency:</span><br><span class="line">npm ERR! peer webpack@<span class="string">"^5.0.0"</span> <span class="keyword">from</span> less-loader@<span class="number">8.0</span><span class="number">.0</span></span><br><span class="line">npm ERR! node_modules/less-loader</span><br><span class="line">npm ERR!   less-loader@<span class="string">"*"</span> <span class="keyword">from</span> the root project</span><br><span class="line">npm ERR! </span><br><span class="line">npm ERR! Fix the upstream dependency conflict, or retry</span><br><span class="line">npm ERR! <span class="keyword">this</span> command <span class="keyword">with</span> --force, or --legacy-peer-deps</span><br><span class="line">npm ERR! to accept an incorrect (and potentially broken) dependency resolution.</span><br><span class="line">npm ERR!</span><br><span class="line">npm ERR! See C:\Users\<span class="number">59129</span>\AppData\Local\npm-cache\eresolve-report.txt <span class="keyword">for</span> a full report.</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log <span class="keyword">of</span> <span class="keyword">this</span> run can be found <span class="keyword">in</span>:</span><br><span class="line">npm ERR!     C:\Users\<span class="number">59129</span>\AppData\Local\npm-cache\_logs\<span class="number">2021</span><span class="number">-03</span><span class="number">-19</span>T09_05_44_385Z-debug.log</span><br></pre></td></tr></table></figure>
+
+<p>解决方案：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">先移除之前版本：npm uninstall less-loader</span><br><span class="line">下载指定版本：npm install less-loader@5.0.0 -D</span><br></pre></td></tr></table></figure>
+
+<p>ui组件 </p>
+<p>element UI</p>
+<p>快捷的使用。</p>
+<p>axios</p>
+<p> 一种返回promise 对象的异步处理的操作，让数据返回的格式。可通用.then。和resolve 和reject 的方法</p>
+<p>catch 错误的信息</p>
+<p>token的操作： 身份信息验证的字段名</p>
+<h3 id="cookie-session-的机制"><a href="#cookie-session-的机制" class="headerlink" title="cookie /session 的机制"></a>cookie /session 的机制</h3><p>一般用cookie 或者session 来进行 验证本地登陆后。会让登录后的权限升级，变成用户级的，然后对应生成，实现 的方法还有就是token 来实现。。验证的流程是差不多的，</p>
+<p>限制，session有些时候跨域会带不上，或者小程序或者app向服务器发送请求，可能就没有存储的地方     </p>
+<h3 id="JWT-鉴权机制"><a href="#JWT-鉴权机制" class="headerlink" title="JWT 鉴权机制"></a>JWT 鉴权机制</h3><p>相对于cookie 的好处，就是它的服务端不用存储。c 和s 的信息。</p>
+<p>而jwt的鉴权机制就会很轻松的通过任何请求带上即可</p>
+<p>实现template 的时候，template里面要有一个元素把内容都包裹起来，例如用一个div 就行了</p>
+<p>注入模版的时候要注意在vue对象上进行模版的绑定</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'App'</span>,</span><br><span class="line">  components:&#123;</span><br><span class="line">    Header</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>要根据页面的不同 展示模块的不同样式排版的时候，可以通过template来进行新版本的排版和选择</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">  &lt;header :<span class="class"><span class="keyword">class</span></span>=<span class="string">"&#123;'login': isLogin,'no-login':!isLogin&#125;"</span>&gt;</span><br><span class="line">    &lt;template v-<span class="keyword">if</span>=<span class="string">"!isLogin"</span>&gt;</span><br><span class="line">      &lt;h1&gt;博客分享&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;p&gt;记录生活，书写梦想&lt;/</span>p&gt;</span><br><span class="line">      &lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">"btn"</span>&gt;</span><br><span class="line">        &lt;el-button&gt;立即登录&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">        &lt;el-button&gt;注册账号&lt;/</span>el-button&gt;</span><br><span class="line">      &lt;<span class="regexp">/div&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>template&gt;</span><br><span class="line">    &lt;template v-<span class="keyword">if</span>=<span class="string">"isLogin"</span>&gt;</span><br><span class="line">      &lt;h1&gt;博客分享&lt;<span class="regexp">/h1&gt;</span></span><br><span class="line"><span class="regexp">      &lt;i class="edit el-icon-edit"&gt;&lt;/i</span>&gt;</span><br><span class="line">      &lt;img src=<span class="string">"http://cn.gravatar.com/avatar/1?s=128&amp;d=identicon"</span> alt=<span class="string">""</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"avatar"</span>&gt;</span><br><span class="line">    &lt;<span class="regexp">/template&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>header&gt;</span><br><span class="line">&lt;<span class="regexp">/template&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>页面路由跳转  router-link</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&lt;router-link to="/user"&gt;Steven&lt;/router-link&gt; 发布于<span class="number">3</span>天前&lt;<span class="regexp">/p&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue-x"><a href="#Vue-x" class="headerlink" title="Vue x"></a>Vue x</h3><p>状态管理工具</p>
+<h5 id="state"><a href="#state" class="headerlink" title="state"></a>state</h5><p>代表原始的数据</p>
+<p>主要是定义数据的结构</p>
+<h5 id="getter"><a href="#getter" class="headerlink" title="getter"></a>getter</h5><p>获取数据的变化，主要是起着一个监听的作用，查看数据</p>
+<p>并对绑定的响应立马生效</p>
+<h5 id="mutation"><a href="#mutation" class="headerlink" title="mutation"></a>mutation</h5><p>提交数据的变换的请求，直接变更状态</p>
+<h5 id="action"><a href="#action" class="headerlink" title="action"></a>action</h5><p>提交的是mutation</p>
+<p>可以包含任意异步操作</p>
+<p>一个行为会对多个数据进行操作，就会进行一个判断，然后</p>
+<h5 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a>Modules</h5><p>对工程量大的数据，进行模块化拆分，</p>
+<p>“<a href="http://cn.gravatar.com/avatar/1?s=128&amp;d=identicon&quot;" target="_blank" rel="noopener">http://cn.gravatar.com/avatar/1?s=128&amp;d=identicon&quot;</a></p>
+<h5 id="导航守卫"><a href="#导航守卫" class="headerlink" title="导航守卫"></a>导航守卫</h5><p>通过验证权限，来访问允许内的数据和页面功能     </p>
+<p>Meta</p>
+<h5 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h5><p>非常好用，自定义时间插件，对时间进行格式化操作，规定输出的模式</p>
+<h5 id="工程化代码上传"><a href="#工程化代码上传" class="headerlink" title="工程化代码上传"></a>工程化代码上传</h5><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">    "upload": "npm run build ;cd dist ;git init;git add . ;git commit -am \"init\"; git remote add origin git@github.com:StevenNin/my-nav.git;git push -f origin master"</span><br><span class="line">  // 通过编译直接上传， 其中有用到的知识点，</span><br><span class="line">1. -am 就是把 git add . 和git commit -m 合并后的写法，更加简单方便</span><br><span class="line">2. -f 因为版本更新迭代后的上传可能会覆盖掉数据，所以用-f</span><br></pre></td></tr></table></figure>
+
+<h5 id="Build-路径"><a href="#Build-路径" class="headerlink" title="Build 路径"></a>Build 路径</h5><p>完整开发路径和开发流程的介绍</p>
+<p>Main.js</p>
+<p>中的el： “#app”对应的就是app.vue中的挂载对象</p>
+<p>路由的生成管理，配置好对应跳转的几个大的元素节点</p>
+<p>router 先要从库中引用</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import Router from 'vue-router'</span><br><span class="line">Vue.use(Router)</span><br></pre></td></tr></table></figure>
+
+<p>样式文件的scoped 域的定义。只对当前</p>
+<p>一些less 引用 知识点</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import '../../assets/base.less'</span><br><span class="line">//引入公用less</span><br></pre></td></tr></table></figure>
+
+<p>数据请求。配置与后台交互的接口</p>
+<p>获取数据然后再页面渲染</p>
+<p>axios 封装好的ajax 的东西</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 因为是一个异步的请求。所以使用promise对象来处理异步请求和数据</span></span><br><span class="line"><span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">//axios 对于请求类型不同。获取的数据的存储位置也不同，就会对类型做个判断然后根据类型不同来获取数据</span></span><br><span class="line"> <span class="keyword">let</span> option = &#123;</span><br><span class="line">      url,</span><br><span class="line">      method: type,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//然后根据后端接口的约定的规范，根据规范的要求返回成功或者失败的信息进行下一步操作</span></span><br><span class="line"><span class="keyword">if</span>（type.toLowerCase() === <span class="string">'get'</span>）&#123;</span><br><span class="line">	option.params = data</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	option.data = data</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">//身份信息的传递。一般常见于登录和注册  </span></span><br><span class="line">  <span class="comment">//  jwt鉴权的验证，登录后服务器发给我一个token，在后续的请求中，主动把token带上去请求数据，不像session-cookie会自动带上sessionId进行请求 。JWT主动请求就需要在请求头中添加对应的字段`Authorization`</span></span><br><span class="line">      <span class="keyword">if</span>(localStorage.token) &#123;</span><br><span class="line">      axios.defaults.headers.common[<span class="string">'Authorization'</span>] =localStorage.token</span><br><span class="line">    &#125;</span><br><span class="line">  <span class="comment">//还有就是session-cookie 的验证方式，根据登录信息验证通过后，服务器自动生成一个session，然后返回当前生成的sessionId存入用户的浏览器的cookie中，然后用户再次发起请求会自动的把cookie带上就可以直接通过服务器的验证，就确认用户登录。让用户获取登录下的权限</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">  <span class="comment">//对数据返回的处理，根据规范定义后的成功的返回数据，进行处理，可以自定义错误信息，也可以根据返回的信息reject处理错误信息，如果数据根本没有发出去或者没有数据，就用catch来处理错误弹出网络异常，当然使用这个函数的人也可以根据需求看是否还需要继续catch，直接可以在request调用后.catch进行下一步的处理</span></span><br><span class="line">    axios(option).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(res.data)</span><br><span class="line">      <span class="keyword">if</span>(res.data.status === <span class="string">'ok'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(res.data.token) &#123;</span><br><span class="line">          localStorage.token = res.data.token</span><br><span class="line">        &#125;</span><br><span class="line">        resolve(res.data)</span><br><span class="line">      &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        Message.error(res.data.msg)</span><br><span class="line">        reject(res.data)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">      Message.error(<span class="string">'网络异常'</span>)</span><br><span class="line">      reject(&#123; <span class="attr">msg</span>: <span class="string">'网络异常'</span> &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(localStorage.token) &#123;</span><br><span class="line">      axios.defaults.headers.common[<span class="string">'Authorization'</span>]  = localStorage.token</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法更强大些</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.headers.post[<span class="string">'Content-Type'</span>] = <span class="string">'application/x-www-form-urlencoded'</span></span><br><span class="line">axios.defaults.baseURL = <span class="string">'https://blog-server.hunger-valley.com'</span></span><br><span class="line"><span class="comment">//一些全局的配置，配置好后，就不用再次配置了</span></span><br></pre></td></tr></table></figure>
+
+<p>写好所有的接口参数配置后</p>
+<p>整体导出成一个函数。对应参数就是url   type=类型是get还是post</p>
+<p>然后调用接口的方法就一目了然</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">request(<span class="string">'auth/login'</span>,<span class="string">'POST'</span>,&#123;<span class="attr">username</span>:<span class="string">'steven'</span>,<span class="attr">password</span>:<span class="string">'123456'</span>&#125;)</span><br><span class="line">	.then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>接口的封装</p>
+<p>​    底层数据  应用层接口Api的封装。 auth 。blog</p>
+<p>把后台规范统一好的接口和路径导出来方便调用数据      </p>
+<p>导出就是封装好的接口定义，直接业务层面的调用用对应的函数Login、regsiter的函数借口和直接传参就行了</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> request <span class="keyword">from</span>	<span class="string">'@/helper/request'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> URL = &#123;</span><br><span class="line">	REGISTER: <span class="string">'/auth/register'</span>,</span><br><span class="line">	LOGIN: <span class="string">'/auth/login'</span>,</span><br><span class="line">	LOGOUT: <span class="string">'/auth/logout'</span>,</span><br><span class="line">	GET_INFO: <span class="string">'/auth'</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">	register(&#123;username, password&#125;)&#123;</span><br><span class="line">		<span class="keyword">return</span> request(URL.REGISTER,<span class="string">'POST'</span>,&#123;username,password&#125;)</span><br><span class="line">	&#125;,</span><br><span class="line">	login(&#123;username, password&#125;)&#123;</span><br><span class="line">		<span class="keyword">return</span> request(URL.LOGIN,<span class="string">'POST'</span>,&#123;username,password&#125;)</span><br><span class="line">	&#125;,</span><br><span class="line">	logout()&#123;</span><br><span class="line">		localStorage.removeItem(<span class="string">'token'</span>)</span><br><span class="line">		<span class="comment">// console.log(localStorage)</span></span><br><span class="line">		<span class="keyword">return</span> request(URL.LOGOUT)</span><br><span class="line">	&#125;, </span><br><span class="line">	getInfo()&#123;</span><br><span class="line">		<span class="keyword">return</span> request(URL.GET_INFO)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​    对于页面的渲染方式有两种</p>
+<p>第一种方案：就是每个页面vue都是重新渲染，从头到尾，header main。footer</p>
+<p>第二种方案：提取共同的组件，对复用的功能或者展示进行封装，根据登录的状态或者不同的权限展示不同的页面，然后导入需要的组件就行了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">router-view  //组件模块的进行替换和渲染，根据对应的跳转，重新渲染</span><br></pre></td></tr></table></figure>
+
+<p>router设置路由的跳转</p>
+<p>页面布局几行几列。网格式布局 grid</p>
+<p>组件的引用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Header <span class="keyword">from</span> <span class="string">'@/components/header'</span>  </span><br><span class="line"><span class="keyword">import</span> Footer <span class="keyword">from</span> <span class="string">'@/components/footer'</span>  </span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">'App'</span>,</span><br><span class="line">  components:&#123;</span><br><span class="line">    Header,</span><br><span class="line">    Footer</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//导入导出</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">base.less <span class="comment">//基础的变量，color ，size 啥的</span></span><br><span class="line">common.less <span class="comment">//通用的样式</span></span><br></pre></td></tr></table></figure>
+
+<p>用v-if来控制组件模块或者功能块的显现</p>
+<p>其中的的header 部分因为会根据用户的权限不同或者登录状态来改变显示的区别</p>
+<p>了解vuex 主要是理解vue 的之间的饿数据传递</p>
+<ul>
+<li>父组件A 向 子组件B 传递数据 通过props的方法 【props是只读的属性】</li>
+<li>子组件B 向 父组件A 发送数据 通过emit</li>
+</ul>
+<p>或者event bus 统一分发处理数据</p>
+<p>vuex 的理念： 一个数据仓库，所有组件可以共享，</p>
+<p>理解数据流</p>
+<p>state - &gt; view &gt;actions &gt; state</p>
+<p>驱动应用的数据源 》以声明的方式将state映射到视图上》view上用户的操作经过后响应后影响状态</p>
+<p>组件越来越多的话就会影响性能，所以就把组件的共享状态抽离出来，全局单例模式进行管理，组成一个巨大的识图，不论在树的任何节点，任何组件都可以获取状态和触发行为</p>
+<p>可以从国家的法律发布来理解vuex ，法律人人可以用，可以看getter， 但是改变法律需要提出申请</p>
+<p>修改一条法律的时候就用mutation，修改法律的一个章节的话就用actions 。如果要重新写法律的话</p>
+<p>就需要module ，把法律细分每一个章节的部分都会有其独立的功能团队来完成编写</p>
+<p>State的中状态数据有一个变了话，就会触发 getter。然后产生变动</p>
+<p>但是不能直接改变State中的状态，要是像改变的话需要commit  一个mutation ，方便我们记录提交记录</p>
+<p>简单单一的提交用mutation 但是复杂的就可以用actions</p>
+<p>modules，将store逻辑拆分，更便于阅读    </p>
+<p>实战：</p>
+<p>注意</p>
+<ol>
+<li>所有数据在state中一开始就要声明写好，初始化，后面需要增加新数据的话，就需要使用vue ，set</li>
+<li>使用常量代替mutation 时间类型</li>
+<li>mutation 必须事同步函数</li>
+<li>mutation 的操作可以拿过来import后转成组件里的computed中当作方法来使用，因为state和getters 都是查看数据，mutation可以修改数据。</li>
+<li>action 是提交一次mutaion（可以从下面的代码中看出对比），而不是如mutation直接修改数据。</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">	state:&#123;</span><br><span class="line">		count:<span class="number">0</span>,</span><br><span class="line">    firstName:<span class="string">'steven'</span>,</span><br><span class="line">    lastName:<span class="string">'zou'</span></span><br><span class="line">	&#125;</span><br><span class="line">	mutation:&#123;</span><br><span class="line">		func1(state)&#123;</span><br><span class="line">			count++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">strore.commit(<span class="string">'func1'</span>)<span class="comment">//提交调用在mutation中的函数，改变状态数据</span></span><br></pre></td></tr></table></figure>
+
+<p>Mutation 实际提交的动作如果，想要提交参额外的数的话，在 mutaition中的commit 中传参， 即是mutation 的载荷 （payload）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">modifyFirstName(state, newName)&#123;</span><br><span class="line">     state.firstName =newName</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>action怎么触发mutation的, 和怎么触发一个action</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"> actions:&#123;</span><br><span class="line">    increment(context)&#123;</span><br><span class="line">        context.commit(<span class="string">'increment'</span>)</span><br><span class="line">        <span class="comment">// 一般调用adctions 都是因为有异步的操作所以会放到这里，可以把context这个形参理解成store，但</span></span><br><span class="line">        <span class="comment">//又不全是store，因为 如果涉及到modules的时候，一个store有多个模块</span></span><br><span class="line">    &#125;</span><br><span class="line"> &#125;</span><br><span class="line">、、store.dispatch(<span class="string">'increment'</span>)</span><br><span class="line">rement</span><br><span class="line"></span><br><span class="line"><span class="comment">//通过dispatch 来触发</span></span><br><span class="line">store.dispatch(<span class="string">'increment'</span>)</span><br><span class="line"><span class="comment">//载荷传参</span></span><br><span class="line">store.dispatch(<span class="string">'incrementAsync'</span>, &#123;</span><br><span class="line">  amount: <span class="number">10</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">actions: &#123;</span><br><span class="line">  checkout (&#123; commit, state &#125;, products) &#123;</span><br><span class="line">    <span class="comment">// 把当前购物车的物品备份起来</span></span><br><span class="line">    <span class="keyword">const</span> savedCartItems = [...state.cart.added]</span><br><span class="line">    <span class="comment">// 发出结账请求，然后乐观地清空购物车</span></span><br><span class="line">    commit(types.CHECKOUT_REQUEST)</span><br><span class="line">    <span class="comment">// 购物 API 接受一个成功回调和一个失败回调</span></span><br><span class="line">    shop.buyProducts(</span><br><span class="line">      products,</span><br><span class="line">      <span class="comment">// 成功操作</span></span><br><span class="line">      () =&gt; commit(types.CHECKOUT_SUCCESS),</span><br><span class="line">      <span class="comment">// 失败操作</span></span><br><span class="line">      () =&gt; commit(types.CHECKOUT_FAILURE, savedCartItems)</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">actions 还可以封装成一个promise</span><br></pre></td></tr></table></figure>
+
+<p>getters像组件中的computed ，但是getters 是操作station的，对原始的数据进行进一步的加工，如果页面都个模块，把关键数据都放在getters 里的话    ，直接子啊业务组件中就可以获取了，很方便     </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">getters:&#123;</span><br><span class="line">	fullName(state)&#123;</span><br><span class="line">		<span class="keyword">return</span> state.firstName + <span class="string">''</span> +state.lastName</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>…mapState().     Veux  对象有这个属性,就是state中已经初始化好的数据</p>
+<p>相当于把strore 中的state映射出来 </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...Vuex.mapState([<span class="string">'firstName'</span>,<span class="string">'lastName'</span>])</span><br></pre></td></tr></table></figure>
+
+<p>假设我们组件有很多getters 都想映射过来，可以用，mapGetters 来进行操作</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...Vuex.mapGetters([<span class="string">'fullName'</span>])</span><br><span class="line"></span><br><span class="line">        <span class="comment">// fullName()&#123;</span></span><br><span class="line">        <span class="comment">//     return this.$store.getters.fullName</span></span><br><span class="line">        <span class="comment">// &#125;</span></span><br><span class="line">        <span class="comment">// 和mapGetters。用法效果是一样的</span></span><br></pre></td></tr></table></figure>
+
+<p>项目来合适学习内容，</p>
+<p>store 入口文件 store中的 index.js 创建好，模块分成了两个，和登录相关的用auth，和博客相关的用blog</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    state,</span><br><span class="line">    getters,</span><br><span class="line">    mutation,</span><br><span class="line">    actions</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//导出来的对象</span></span><br></pre></td></tr></table></figure>
+
+<p>如何引用呢</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import store from &apos;../store&apos;  //在main.js中引用</span><br><span class="line">然后 默认导出</span><br><span class="line">全局都可以使用了</span><br></pre></td></tr></table></figure>
+
+<p>把auth中的state 中数据初始化</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = &#123;</span><br><span class="line">    user: <span class="literal">null</span>,</span><br><span class="line">    isLogin:<span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> getters = &#123;</span><br><span class="line">    user:<span class="function"><span class="params">state</span> =&gt;</span> state.user,</span><br><span class="line">    isLogin: <span class="function"><span class="params">state</span> =&gt;</span> state.isLogin</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">    setUser(state,payload)&#123;</span><br><span class="line">        state.user = payload.user</span><br><span class="line">    &#125;,</span><br><span class="line">    setLogin(state,payload)&#123;</span><br><span class="line">        state.isLogin = payload.isLogin</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">    login(&#123;commit&#125;,&#123;username,password&#125;)&#123;</span><br><span class="line">        <span class="keyword">return</span> auth.login(&#123;username,password&#125;)</span><br><span class="line">            .then(<span class="function"><span class="params">res</span> =&gt;</span>&#123;</span><br><span class="line">                commit(<span class="string">'setUser'</span>,&#123;<span class="attr">user</span>:res.data&#125;)</span><br><span class="line">                commit(<span class="string">'setLogin'</span>,&#123;<span class="attr">isLogin</span>:<span class="literal">true</span>&#125;)</span><br><span class="line">            &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">async</span> register(&#123; commit &#125;,&#123;username,password&#125;)&#123;</span><br><span class="line">        <span class="keyword">let</span> res  = <span class="keyword">await</span> auth.register(&#123;username,password&#125;)</span><br><span class="line">        commit(<span class="string">'setUser'</span>,&#123;<span class="attr">user</span>:res.data&#125;)</span><br><span class="line">        commit(<span class="string">'setLogin'</span>,&#123;<span class="attr">isLogin</span>:<span class="literal">true</span>&#125;)</span><br><span class="line">        <span class="keyword">return</span> res.data </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">async</span> logout(&#123; commit &#125;)&#123;</span><br><span class="line">        <span class="keyword">await</span> auth.logout()</span><br><span class="line">        commit(<span class="string">'setUser'</span>,&#123;<span class="attr">user</span>:<span class="literal">null</span>&#125;)</span><br><span class="line">        commit(<span class="string">'setLogin'</span>,&#123;<span class="attr">isLogin</span>:<span class="literal">false</span>&#125;)</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="keyword">async</span> checkLogin(&#123; commit,state &#125;)&#123;</span><br><span class="line">        <span class="keyword">if</span>(state.isLogin)<span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">        <span class="keyword">let</span> res = <span class="keyword">await</span> auth.getInfo()</span><br><span class="line">        commit(<span class="string">'setLogin'</span>,&#123;<span class="attr">isLogin</span>:res.isLogin&#125;)</span><br><span class="line">        <span class="keyword">if</span>(!res.isLogin) <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">        commit(<span class="string">'setUser'</span>,&#123;<span class="attr">user</span>:res.data&#125;)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    this.logout().then(isLogin =&gt;&#123;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    &#125;)</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>created 钩子函数，在组件和数据加载完成，但是页面还未渲染挂载的之前进行操作，一般会用与获取Ajax的数据，会用这个钩子函数来进行获取数据</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">created()&#123;</span><br><span class="line">  <span class="keyword">this</span>.checkLogin()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="常见的API及其使用"><a href="#常见的API及其使用" class="headerlink" title="常见的API及其使用"></a>常见的API及其使用</h3><p>v-show   切换元素的display 属性</p>
+<p><code>v-if</code> 一起使用时，<code>v-for</code> 的优先级比 <code>v-if</code> 更高</p>
+<p>v-for 基于源数据多次渲染元素或模板块。此指令之值，必须使用特定语法 <code>alias in expression</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div v-for=&quot;item in items&quot;&gt;</span><br><span class="line">  &#123;&#123; item.text &#125;&#125;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>emit  </p>
+<p>eventbus </p>
+<p>组件之间的信息传递</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vue/" rel="tag"># vue</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/post/验证机制/" rel="prev" title="缓存机制">
+      <i class="fa fa-chevron-left"></i> 缓存机制
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie-session-的机制"><span class="nav-number">1.</span> <span class="nav-text">cookie /session 的机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JWT-鉴权机制"><span class="nav-number">2.</span> <span class="nav-text">JWT 鉴权机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-x"><span class="nav-number">3.</span> <span class="nav-text">Vue x</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#state"><span class="nav-number">3.0.1.</span> <span class="nav-text">state</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#getter"><span class="nav-number">3.0.2.</span> <span class="nav-text">getter</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#mutation"><span class="nav-number">3.0.3.</span> <span class="nav-text">mutation</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#action"><span class="nav-number">3.0.4.</span> <span class="nav-text">action</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Modules"><span class="nav-number">3.0.5.</span> <span class="nav-text">Modules</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#导航守卫"><span class="nav-number">3.0.6.</span> <span class="nav-text">导航守卫</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#插件"><span class="nav-number">3.0.7.</span> <span class="nav-text">插件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#工程化代码上传"><span class="nav-number">3.0.8.</span> <span class="nav-text">工程化代码上传</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Build-路径"><span class="nav-number">3.0.9.</span> <span class="nav-text">Build 路径</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常见的API及其使用"><span class="nav-number">4.</span> <span class="nav-text">常见的API及其使用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Steven Zou" src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Steven Zou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">15</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Steven Zou</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
