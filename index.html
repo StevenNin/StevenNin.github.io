@@ -155,6 +155,82 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Vue常用场景/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Steven Zou">
+      <meta itemprop="description" content>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不久之前 我们也都是少年">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/post/Vue常用场景/" class="post-title-link" itemprop="url">Vue常用场景</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-04-26 19:56:06 / 修改时间：20:53:48" itemprop="dateCreated datePublished" datetime="2021-04-26T19:56:06+08:00">2021-04-26</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="信息传递的场景"><a href="#信息传递的场景" class="headerlink" title="信息传递的场景"></a>信息传递的场景</h2><h4 id="父子组件之间的传递"><a href="#父子组件之间的传递" class="headerlink" title="父子组件之间的传递"></a>父子组件之间的传递</h4><h5 id="子-gt-gt-gt-gt-父"><a href="#子-gt-gt-gt-gt-父" class="headerlink" title="子&gt;&gt;&gt;&gt; 父"></a>子&gt;&gt;&gt;&gt; 父</h5><p>业务场景，一些被引入后的子组件产生交互后，需要控制元素或者传递信息给父组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//子组件中的方法调用 核心 this.$emit()</span></span><br><span class="line"><span class="comment">//一般都是用this ，但是这是在函数的函数中调用的this的话，this不是指向vue，所以要在函数第一层级的入口中声明，改变下this的指针指向，用that来替代，第一个参数为调用的场景，第二个参数可以选择为需要传递的信息，也可以不传，但是必须带上，格式规范要求</span></span><br><span class="line"><span class="keyword">const</span> that = <span class="keyword">this</span>。或者 self = <span class="keyword">this</span>，</span><br><span class="line">that.$emit(<span class="string">'uploadDialogShow'</span>,<span class="string">'false'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//父组件中的调用</span></span><br><span class="line">&lt;upload-file :uploadUrl=<span class="string">"'/standard/domestic/upload'"</span> @uploadDialogShow =<span class="string">"toggleDialog"</span> /&gt;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@uploadDialogShow 是连接子组件的纽带，通过子组件触发这个方法</span><br><span class="line">在method 中声明toggleDialog()  然后进行操作</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/post/Vue常用场景/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Vue/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -913,99 +989,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/post/Prototype/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.png">
-      <meta itemprop="name" content="Steven Zou">
-      <meta itemprop="description" content>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不久之前 我们也都是少年">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/post/Prototype/" class="post-title-link" itemprop="url">Prototype</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2019-12-18 22:18:20" itemprop="dateCreated datePublished" datetime="2019-12-18T22:18:20+08:00">2019-12-18</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-04-10 00:01:17" itemprop="dateModified" datetime="2021-04-10T00:01:17+08:00">2021-04-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Share/" itemprop="url" rel="index"><span itemprop="name">Share</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h4 id="全局对象"><a href="#全局对象" class="headerlink" title="全局对象"></a>全局对象</h4><h4 id="windows的属性"><a href="#windows的属性" class="headerlink" title="windows的属性"></a>windows的属性</h4><ol>
-<li>共有的属性（ECMA规定）</li>
-</ol>
-<ul>
-<li>parseInt、parseFloat、number、string、object、window.setTimeout（window自带的api）</li>
-</ul>
-<ol>
-<li>私有的属性（浏览器的自定义）</li>
-</ol>
-<ul>
-<li>alert、prompt、confirm、console.log（）、document/Dom()w3c、history(浏览器)Bom</li>
-</ul>
-<h5 id="简单类型和对象的区别"><a href="#简单类型和对象的区别" class="headerlink" title="简单类型和对象的区别"></a>简单类型和对象的区别</h5>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/post/Prototype/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1076,7 +1059,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">16</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
